@@ -2,10 +2,10 @@
 output: web
 # this property is useful for conditional filtering of content that is separate from the PDF.
 
-topnav_title: API Connect PoT
+topnav_title: API Connect Fast Start
 # this appears on the top navigation bar next to the home button
 
-site_title: API Connect PoT
+site_title: API Connect Fast Start
 # this appears in the html browser tab for the site title (seen mostly by search engines, not users)
 
 company_name: IBM
@@ -25,7 +25,7 @@ exclude:
   - node_modules
 # these are the files and directories that jekyll will exclude from the build
 
-feedback_email: bakert@us.ibm.com
+feedback_email: jamil.spain@us.ibm.com
 # used as a contact email for the Feedback link in the top navigation bar
 
 feedback_disable: true
@@ -37,7 +37,7 @@ feedback_disable: true
 # feedback_link: "http://helpy.io/"
 # if you uncomment the previous line, it changes where the feedback link points to
 
-baseurl: '/pot'
+baseurl: '/faststart'
 
 highlighter: rouge
 # library used for syntax highlighting
@@ -72,7 +72,7 @@ defaults:
 sidebars:
 - labs_sidebar
 
-description: "IBM API Connect Proof of Technology"
+description: "IBM API Connect Fast Start Proof of Technology Lab"
 # the description is used in the feed.xml file
 
 # needed for sitemap.xml file only
