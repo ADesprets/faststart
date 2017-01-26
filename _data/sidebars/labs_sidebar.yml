@@ -45,8 +45,22 @@ children:
     url: '/faststart/lab0.html#create-your-developer-portal-instance-for-your-api-connect-catalog'
     output: 'web'
 
-- title: 'Lab 1 - Introduction to IBM API Connect'
+- title: 'Lab 1 - Customising the API Connect Developer Portal'
   url: '/faststart/lab1.html'
+  output: 'web'
+  children:
+
+  - title: 'Basic Developer Portal Customisation'
+    url: '/faststart/lab1.html#creating-a-notes-application'
+    output: 'web'
+
+  - title: 'Advanced Developer Portal Customisation'
+    url: '/faststart/lab1.html#launching-the-notes-application'
+    output: 'web'
+
+
+- title: 'Lab 2 - Protecting a payments API using oAuth 2.0'
+  url: '/faststart/lab2.html'
   output: 'web'
   children:
 
@@ -70,197 +84,3 @@ children:
     url: '/faststart/lab1.html#browsing-the-api-in-the-developer-portal'
     output: 'web'
 
-- title: 'Lab 2 - Create a Loopback Application'
-  url: '/faststart/lab2.html'
-  output: 'web'
-  children:
-
-  - title: 'Create a Working Directory'
-    url: '/faststart/lab2.html#create-a-working-directory'
-    output: 'web'
-
-  - title: 'Create the Inventory App'
-    url: '/faststart/lab2.html#create-the-inventory-app'
-    output: 'web'
-
-  - title: 'Create a Data Source Connector to Cloudant'
-    url: '/faststart/lab2.html#create-a-data-source-connector-to-cloudant'
-    output: 'web'
-
-  - title: 'Launch the API Connect Designer'
-    url: '/faststart/lab2.html#launch-the-api-connect-designer'
-    output: 'web'
-
-  - title: 'Create a Model for the Inventory Items'
-    url: '/faststart/lab2.html#create-a-model-for-the-inventory-items'
-    output: 'web'
-
-  - title: 'Create Properties for the item Model'
-    url: '/faststart/lab2.html#create-properties-for-the-item-model'
-    output: 'web'
-
-  - title: 'Verify API'
-    url: '/faststart/lab2.html#verify-api'
-    output: 'web'
-
-  - title: 'Create the second Cloudant Data Source for Item Reviews'
-    url: '/faststart/lab2.html#create-the-second-cloudant-data-source-for-item-reviews'
-    output: 'web'
-
-  - title: 'Create Model for Reviews'
-    url: '/faststart/lab2.html#create-model-for-reviews'
-    output: 'web'
-
-  - title: 'Create a Relationship Between the item and review Data Models'
-    url: '/faststart/lab2.html#create-a-relationship-between-the-item-and-review-data-models'
-    output: 'web'
-
-  - title: 'Verify the Relationship'
-    url: '/faststart/lab2.html#verify-the-relationship'
-    output: 'web'
-
-- title: 'Lab 3 - Customize and Deploy the Inventory Application'
-  url: '/faststart/lab3.html'
-  output: 'web'
-  children:
-
-  - title: 'Edit the Application Configuration'
-    url: '/faststart/lab3.html#edit-the-application-configuration'
-    output: 'web'
-
-  - title: 'Create a Remote Hook'
-    url: '/faststart/lab3.html#create-a-remote-hook'
-    output: 'web'
-
-  - title: 'Publish App to Bluemix'
-    url: '/faststart/lab3.html#publish-app-to-bluemix'
-    output: 'web'
-    children:
-
-    - title: 'Configure Developer Toolkit to Communicate with API Connect'
-      url: '/faststart/lab3.html#configure-the-developer-toolkit-to-communicate-with-api-connect'
-      output: 'web'
-
-    - title: 'Publish the Application'
-      url: '/faststart/lab3.html#publish-the-application'
-      output: 'web'
-
-- title: 'Lab 4 - Configure and Secure an API'
-  url: '/faststart/lab4.html'
-  output: 'web'
-  children:
-
-  - title: 'Working with the Inventory API in API Designer'
-    url: '/faststart/lab4.html#working-with-the-inventory-api-in-api-designer'
-    output: 'web'
-
-  - title: 'Adding a New OAuth 2.0 Provider API'
-    url: '/faststart/lab4.html#adding-a-new-oauth-20-provider-api'
-    output: 'web'
-
-  - title: 'Configuring and Securing the Inventory API'
-    url: '/faststart/lab4.html#configuring-and-securing-the-inventory-api'
-    output: 'web'
-
-  - title: 'Defining API Processing Behavior'
-    url: '/faststart/lab4.html#defining-api-processing-behavior'
-    output: 'web'
-
-  - title: 'Validate OAuth Configuration'
-    url: '/faststart/lab4.html#validation'
-    output: 'web'
-
-- title: 'Lab 5 - Advanced API Assembly'
-  url: '/faststart/lab5.html'
-  output: 'web'
-  children:
-
-  - title: 'Create the Financing API (REST to SOAP)'
-    url: '/faststart/lab5.html#create-the-financing-api-rest-to-soap'
-    output: 'web'
-    children:
-
-    - title: 'Create the API Definition'
-      url: '/faststart/lab5.html#create-the-api-definition'
-      output: 'web'
-
-    - title: 'Build the Financing API Assembly'
-      url: '/faststart/lab5.html#build-the-financing-api-assembly'
-      output: 'web'
-
-  - title: 'Add Logistics API (Advanced Assembly)'
-    url: '/faststart/lab5.html#add-logistics-api-advanced-assembly'
-    output: 'web'
-    children:
-
-    - title: 'Import Predefined API Definition'
-      url: '/faststart/lab5.html#import-predefined-api-definition'
-      output: 'web'
-
-    - title: 'Create the Logistics API Assembly'
-      url: '/faststart/lab5.html#create-the-logistics-api-assembly'
-      output: 'web'
-
-    - title: 'Move the Logistics Definition File'
-      url: '/faststart/lab5.html#move-the-logistics-definition-file'
-      output: 'web'
-
-- title: 'Lab 6 - Working with API Products'
-  url: '/faststart/lab6.html'
-  output: 'web'
-  children:
-
-  - title: 'Creating an API Product'
-    url: '/faststart/lab6.html#creating-an-api-product'
-    output: 'web'
-
-  - title: 'Publishing the API Product'
-    url: '/faststart/lab6.html#publishing-the-api-product'
-    output: 'web'
-
-- title: 'Lab 7 - Consumer Experience'
-  url: '/faststart/lab7.html'
-  output: 'web'
-  children:
-
-  - title: 'Customize the Developer Portal'
-    url: '/faststart/lab7.html#customize-the-developer-portal'
-    output: 'web'
-    children:
-
-    - title: 'Install and Configure a Custom Theme'
-      url: 'https://ibm-apiconnect.github.io/faststart/pot/lab7.html#install-and-configure-a-custom-theme'
-      output: 'web'
-
-    - title: 'Customize the Welcome Banner'
-      url: '/faststart/lab7.html#customize-the-welcome-banner'
-      output: 'web'
-
-    - title: 'Change the Region Settings for the Content Blocks'
-      url: '/faststart/lab7.html#change-the-region-settings-for-the-content-blocks'
-      output: 'web'
-
-  - title: 'Register an Application as a Developer'
-    url: '/faststart/lab7.html#register-an-application-as-a-developer'
-    output: 'web'
-
-  - title: 'Subscribe to a Plan for the ThinkIBM APIs'
-    url: '/faststart/lab7.html#subscribe-to-a-plan-for-the-thinkibm-apis'
-    output: 'web'
-
-  - title: 'Test think Product APIs from the Developer Portal'
-    url: '/faststart/lab7.html#test-think-product-apis-from-the-developer-portal'
-    output: 'web'
-
-  - title: 'Test the APIs from the Think IBM Web Consumer Application'
-    url: '/faststart/lab7.html#test-the-apis-from-the-think-ibm-web-consumer-application'
-    output: 'web'
-
-- title: 'Lab 8 - Analytics in API Connect'
-  url: '/faststart/lab8.html'
-  output: 'web'
-  children:
-
-  - title: 'Browse the Analytics Data in API Connect'
-    url: '/faststart/lab8.html#browse-the-analytics-data-in-api-connect'
-    output: 'web'

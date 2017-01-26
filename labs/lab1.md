@@ -1,5 +1,5 @@
 ---
-title: Lab 1 - Introduction to IBM API Connect
+title: Lab 1 - Customising the API Connect Developer Portal
 toc: true
 sidebar: labs_sidebar
 permalink: /lab1.html
@@ -22,233 +22,256 @@ For this lab, you will be starting with your local image and installing node.js 
 
 ## Step by Step Lab Instructions
 
-### 1.1	- Creating a `notes` Application
+### 1.1	- Basic Developer Portal Customisation
 
-1.  We will use the API Connect Developer Toolkit command line interface to create the initial application and explore the created artifacts.
+In this section, you will leverage a custom prebuilt theme. A theme file is packaged as a zip file that contains a set of predefined files. The theme zip file is what is loaded into the developer portal. The best method for creating a custom theme is to obtain an existing custom theme, rename it and change the files as explained in the table below to meet your customization needs.
 
-1.  From the terminal command line type:
+|Filename|Description|
+|--------|-----------|  
+|`overrides.css`|This style sheet overrides the fonts, colors and other defaults from the inherited base IBM API Connect theme. The name of this css file is specified in the theme.info file.|
+|`screenshot.png`|The file contains a screenshot of the home page for the custom theme and is used in the appearance settings so you can easily find the theme you want to enable and set as the default theme. When you are finishing completing the edits to the overrides.css and have set up the welcome banner to your satisfaction, you should take a screen shot of the developer portal home page and capture it with Snagit or some other screen capture tool and place the file in the top level directory of the theme file. The name of this screenshot file is specified in the theme.info file.|
+|`templete.php`|The template.php file contains your sub-theme's functions to manipulate Drupal's default markup. It is one of the most useful files when creating or modifying Drupal themes. With this file you can modify any theme hooks variables or add your own variables, using preprocess or process functions. Override any theme function: that is, replace a module's default theme function with one you write. Call hook alter functions, which allow you to alter various parts of Drupal's internals, including the render elements in forms. See <http://api.drupal.org> for more information about these functions.| 
+|`thinkibm_connect_theme.info`|The .info file is a static text file for defining and configuring a theme. Each line in the.info file is a key-value pair with the key on the left and the value on the right, with an "equals sign" between them (e.g. name = my_theme). The info file naming conventions needs to have the theme name specified as part of the filename. The project key in the .info file contains the name of the theme.|
+|`theme-settings.php`|Drupal themes get a number of configurable settings options for free. For example, most provide toggle switches for the search box, site slogans, user pictures, and so on. Similarly, most provide file uploading widgets to add a custom logo or favicon. These settings are easy: Drupal will add them to the theme's configuration page by default, so it takes no extra work. We want to create our own custom setting, however; one that adds a hidden field that contains the current release information to the Theme configuration form. To do that, we'll need to add a new file to the theme: `theme-settings.php`. The function name specified within this file needs to be prefixed with the theme name: `thinkibm_connect_theme`.|
+|`thinkibm_welcome_banner.png`|This file provides the image that shows up in the welcome banner. Although the welcome banner does not need to be part of the theme zip file contents, it is useful to place the welcome banner with other theme files.|
+|`favicon.ico`|In web development, you can provide a small logo for your site that appears near the address bar and in the bookmarks folder in a visitor's browser. This logo is called the favicon. Drupal provides a default one, which is the recognizable water drop logo. Using the Drupal logo as the favicon is fine but if you really want to make your site stand out, you should provide your own. Favicon files are in the .ico format and are extremely small in dimensions. The default Drupal favicon is 32 pixels high by 32 pixels wide, many browsers use a 16 x 16 pixel version that can be included in the same file. This is because the favicon is only an icon that shows up in the address bar and favorites (bookmarks) list and typically there is not a lot of room there. Any favicon that you create should be just as small.|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+|`logo.png`|The default logo that appears at the top left-hand side of the developer portal page.|
 
-    ```bash
-    apic loopback
-    ```
+#### 7.1.1 - Install and Configure a Custom Theme
 
-    This command starts the application generator, Yeoman, to help scaffold the new project. Just press enter for first two questions and then select **notes** for the kind of application.
+Now that we have explained the contents of a custom theme file, it is time to load the custom theme.
+
+1.  Return to the Bluemix API Manager screen.
+
+    Navigate to the Dashboard section and click on the `Sandbox` catalog tile.
     
-    ```
-    ? What's the name of your application? notes
-    ? Enter name of the directory to contain the project: notes
-    ? What kind of application do you have in mind? 
-    empty-server (An empty LoopBack API, without any configured models or datasources) 
-    hello-world (A project containing a controller, including a single vanilla Message and a single remote method) 
-    ❯ notes (A project containing a basic working example, including a memory database)
-    ```
+    Choose the `Settings` tab, followed by the `Portal` option.
+    
+    Click on the `Portal URL` link to launch the Developer Portal.
+    
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/launch-portal.png)
 
-    This creates an application named "notes" in a directory of the same name. The application is a basic Notes application. You will see a lot of messages printed to the command line window. It is creating a few resources for you and installing the various node modules. Once the node modules are loaded you'll notice that the process creates swagger and product definitions for you. Finally, the process displays some hints about what to do next. Since we've been given such lovely suggestions about what to do next, we may as well follow the first one at least.
+1.  Login into the developer portal as an administrator using a username of `admin` and the password you set up in Lab 1.
 
-1.  Change directories to the project directory:
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/PortalAdminLogin.png)
+
+1.  From the Administrator menu, select `Appearance` and then `Install new theme`.
+
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/InstallNewPortalTheme.png)
+
+1.  In the `Install from a URL` field, enter the following URL then click the `Install` button:
+
+    [https://github.com/ibm-apiconnect/pot/raw/gh-pages/assets/lab7/portal-theme.zip](https://github.com/ibm-apiconnect/pot/raw/gh-pages/assets/lab7/portal-theme.zip)
+
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/install-theme.png)
+    
+1.  Once the installation of the custom theme completes, click the `Enable newly added themes` link.
+
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/enable-theme.png)
+   
+1.  Scroll down the list of themes to find the `thinkibm_connect 7.50` theme.
+
+    Click the `Enable and set default link` link.
+
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/set-default-theme.png)
 	
-    ```bash
-    cd notes
-    ```
+1.  Click the `Home` icon in the top-left corner of the screen to return to the home page.
 
-1.  List the directory: <a class="anchorjs-link " href="#loopback-files" aria-label="Anchor link for: loopback files" data-anchorjs-icon="" style="font-family: anchorjs-icons; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; line-height: 1; padding-left: 0.375em;"></a>
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/CloseThemeSettings.png)
 
-    <div id="loopback-files"></div>
+#### 7.1.2 - Customize the Welcome Banner
 
-    ```bash
-    $ ls
-    client  common  definitions  node_modules  package.json  server
-    ```
+Now we want to change the default Welcome banner to use our custom Welcome banner image. 
 
-    If you're familiar with LoopBack or Node.js applications, some of the directories may be familiar to you. If not, here is a description of some of what is created.
+1.  Navigate to the blocks content page by selecting `Content > Blocks` from the admin menu.
 
-    |Directory or file|Description|
-    |-----------------|-----------|
-    |`client`|If the application has a front end, this is where the HTML, CSS, JavaScript, etc would be located. For our sample application there is only a stubbed out README.md.|
-    |`common`|Files common to both the server and the client application.|
-    |`common/models`|This sub-directory contains all the model JSON and JavaScript files. By model we're referring to a data model.|
-    |`common/models/note.js`|Custom script for the note data model. This file contains the implementation of the methods defined by the model definition file.|
-    |`common/models/note.json`|The note model definition file. This file contains the definition of the properties and methods for this model.|
-    |`definitions`|This directory contains the definitions for the APIs and the product contained in this application.|
-    |`definitions/notes-product.yaml`|YAML file for the the notes product. Which includes default plans for testing locally.|
-    |`definitions/notes.yaml`|Swagger definition file for the notes API. Includes information about the REST paths and operations, schemas for data models, security requirements, etc.|
-    |`node_modules`|Directory containing all the required node modules for the default application.|
-    |`package.json`|Standard Node.js package specification. Most importantly it contains the application package dependencies.|
-    |`server`|This directory contains the Node.js application and configuration files. We'll not look at them all in this tutorial, but here are a few.|
-    |`server/server.js`|The main appication script for this application.<br/><br/>**Note:** this is defined in the package.json file.|
-    |`server/config.json`|This file contains the global application settings, such as REST API root, hostname and port.|
-    |`server/model-config.json`|This file binds models to data sources and specifies whether a model is exposed over REST, among other things.|
-    |`server/datasources.json`|This file is the data source configuration file.|
-    
-    {% include note.html content="
-        `*.md` files, such as that found in the client directory, are markdown files used for internal documentation.
-    " %}
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/ThinkIBMBlocks.png)
+
+1.  Underneath operations select `Edit` to the right of the Welcome banner block.
+
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/edit-welcome-banner.png)
+
+1.  Before you can set the image, you will need to download it to your local computer's disc drive. You can download the file from this URL:
+
+    [https://thinkibm-services.mybluemix.net/portal/welcome-banner.png](https://thinkibm-services.mybluemix.net/portal/welcome-banner.png)
+
+1.  Scroll down the banner edit page, locate the *Image* section and click the `Chose file` button to launch the file explorer.
+
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/choose-banner-file.png)
+
+1.  Find the `welcome-banner.png` file. Then, click the `Open` button.
+
+1.  Click the `Upload` button to upload the new welcome banner image.
+
+1.  Scroll to the bottom of the page and click the `Save` button.
+
+1.  Click on the `x` button to close the content block settings.
+
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/close-content-block.png)
+
+#### 7.1.3 - Change the Region Settings for the Content Blocks
+
+The region settings for some of the content blocks were reset when we loaded the new theme, so we will set these back.
+
+1.  Navigate to the region settings for block content page by selecting `Structure > Blocks` from the admin menu.
+
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/ThinkIBMBlockRegionSettings.png)
+
+1.  Locate the **Sidebar first** block. You will see entries for `Navigation`, `Support` and `User login`.
+
+1.  For **both** the `Navigation` and `User Login` entries, select `- None -` from the drop down menu.
+
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/SetBlockRegionstoNone.png)
+
+1.  The only entry left in the section should be `Support`.
+	
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/sidebar-first-complete.png)
+
+1.  Scroll down to the bottom of the screen anc click the `Save Blocks` button.
+
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/SaveBlockRegions.png)
+
+1.  Scroll back to the top and click the `x` button to close the block region settings.
+
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/close-region-block.png)
+
+1.  You are finished with customizing the developer portal. There is a lot more that can be customized than what we have time for in this lab. Log out of the developer portal.
+
+    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/PortalAdminLogout.png)
 
 ### 1.2	- Launching the `notes` Application
 
-1.  Now that we've explored what is created by the application generator, let's move on to the API Designer. From the command line:
+### Adding the slogan
+1.	Click Configuration > System > Site Information 
+2.	In the 'Slogan' field enter: 'Welcome to the API Portal'
 
-    ```bash
-    apic edit
-    ```
+      <img src="/madridapiclab1/images/1.png" width="450">
 
-1.  Next, click on the `start` button located on the bottom panel of the API Designer to launch the `notes` application.  On a Windows environment, you might see 2 node windows pop up on your screen.  Minimize, but do not close these windows.
-	
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/6.png)
-	
-1.  Once start completes, you should see a screen similar to this:
-	
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/7.png)
-	
-1.  Notice that once the application is up and running, stop and restart buttons will appear on the bottom side of the screen:
-	
-    At this point we're ready to Explore and test our services.
+3.	Save the configuration 
+
+      <img src="/madridapiclab1/images/2.png" width="450">
+ 
+4.	Close the current window
+
+      <img src="/madridapiclab1/images/3.png" width="700">
+ 
+5.	Click Appearance > Settings 
+6.	Navigate to the thinkibm_connect theme settings
+ 
+      <img src="/madridapiclab1/images/4.png" width="700">
+ 
+7.	Expand the Toggle display section and check the box for 'Site Slogan' 
+
+      <img src="/madridapiclab1/images/5.png" width="450">
+ 
+8.	Save the configuration 
+9.	You will notice that you will not be able to see any changes. This is because the color scheme of the slogan is set to white text on the white background. 
+
+
+
+
+### Colour schemes and custom CSS
+Here we are going to add custom CSS to our theme. For this we are going to use the ‘Custom CSS’ extension in the developer portal. Note the ‘Custom CSS’ extension is designed to make small CSS changes in the case of emergencies in production. However, the ‘Custom CSS’ extension is also useful to quickly make CSS changes at development time when you are building the look and feel of a developer portal. It saves the need to re-upload the theme every time a new CSS change is made throughout development. Once you are happy with the CSS and it is stable, it should be moved from the ‘Custom CSS’ extension and placed inside the overrides.css file inside the theme itself. 
+
+1.	To activate the ‘Custom CSS’ extension go to Appearance > Setting > thinkibm_connect > Extensions > Check box ‘Custom CSS’.
+
+        <img src="/madridapiclab1/images/6.png" width="700">
+      
+2.	Save the changes by clicking ‘Save Configuration’ at the bottom of the page. 
+3.	Now if you go to Appearance > Setting > thinkibm_connect then scroll down to the menu at the bottom (extensions), there will be a new menu tab called ‘Custom CSS’. In here, any custom CSS declarations can be set. 
+4.	Inside the custom CSS editor area, copy the flowing 2 CSS declarations:
+             
+             /*  CSS for changing the site slogan: */
+                h2#site-slogan {
+                  padding-top: 1.9em;
+                  font-size: 2em !important;
+                  color: #444849;
+
+                }
+                /* CSS for changing the logo padding: */
+                img.site-logo {
+                  height: 95px;
+                  padding-top: 14px;
+                }
+
+      <img src="/madridapiclab1/images/7.png" width="700">
+
+5.	Now scroll to the bottom of the page and hit ‘Save Configuration’. 
+6.	Scroll to the top and hit the X to close the Appearance menu and view the changes you have made. 
+
+      <img src="/madridapiclab1/images/8.png" width="700">
+      
+
+### Custom footer block
+1.	Click 'Structure' > 'Blocks' 
+2.	Click configure on the 'Developer portal footer' block
+
+        <img src="/madridapiclab1/images/9.png" width="700">
+
+3.	Open the wysiwyg (button with html on it) editor and paste in the contents below. 
+
+          <div class="footer_wrapper_div"><div class="upper_grey_block"><div class="table_div_left" style="text-align:    center;">&nbsp;</div></div><div class="lower_grey_block"><div class="centered_link" style="text-align: center;"><a>Terms of use |</a>&nbsp;<a>Terms &amp; Conditions</a>&nbsp; |&nbsp;<a>Privacy Policy</a>&nbsp; |&nbsp;<a>Cookies</a>&nbsp;<a>Accessibility</a>&nbsp; |&nbsp;<a>Sitemap</a></div><div class="list_div_left">&nbsp;</div><div class="list_div_left" style="text-align: center;"><a></a>© IBM 2016. All Rights Reserved</div></div></div>
+
+      <img src="/madridapiclab1/images/10.png" width="700">
+
+
+
+4.	Click Update 
+5.	Select 'Full HTML' from the 'Text Format' drop down 
+
+      <img src="/madridapiclab1/images/11.png" width="700">
+  
+6.	Save the block from the foot of the page
+7.	Close the window and view the changes made to the footer. 
+
+
+
+
+### Adding a Custom block to the home page
+1.	Click Structure > Pages
+2.	Click 'edit' on the 'page-welcome' page (towards the bottom of the list)
+3.	Click 'content'
+
+        <img src="/madridapiclab1/images/12.png" width="700">
     
-    {% include note.html content="
-        We used the web-based editor to launch the application. There's also a command provided with the API Connect Developer Toolkit that can be utilized from the terminal to lauch the application: `apic start`
-    " %}
+4.	Using the cog on 'Middle (conditional)' select 'Add content'
+5.	Click Custom Blocks
+6.	Click on ‘New Custom Content’ and set:
+      - Administrative Title: Homepage block 1
+      - Title: leave blank
 
-### 1.3	- Testing the `notes` Application
+7.	Click on the html button and add in the following html to the body                      
+                                        
+        <div class="light_grey_homepage_block"><div class="left_side_50_div"><div class="fixed_width_block_div"><h3 class="block_heading_2 align_text_center" style="text-align: center;"><span style="color: #444849;">Create a seamless experience with direct access to our services and intergrate them with your business</span></h3><h3 class="block_heading_2 align_text_center" style="text-align: center;"><span style="color: #444849;">Look through our API products to find the right one for your business. There's dedicated documentaion on hand for you to get started.&nbsp;</span></h3><h3 class="block_heading_2 align_text_center" style="text-align: center;"><span style="color: #444849;">If you have any questions about how to get started or need help with your existing intergration, take a look in our support section.</span></h3></div></div></div>
+                      
+      <img src="/madridapiclab1/images/13.png" width="700">
 
-1.  Click the `Explore` button to switch to the API Explorer view.
+8.	Click update on the html source editor
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/8.png)
-    
-    You will see all the exposed service paths displayed.
-    
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/exploreScreen.png)
+      <img src="/madridapiclab1/images/14.png" width="700">
+      
+9.	Click finish. 
+10.	Drag the Homepage block 1 that you just created to the top of the middle section (above the features_apis_title block). This will position this new section on the page underneath the welcome banner.
 
-1.  Now we're going to test the services using the GUI presented on the explore screen. You'll notice that on the left several REST services are defined for us. In particular, take a look `POST /notes` and `GET /notes`.
+      <img src="/madridapiclab1/images/15.png" width="700">
 
-    If you're not familiar with GET and POST, they are HTTP methods (sometimes called verbs). The POST method is used for creation calls to the service. The GET method is used to retrieve information from a service. In this case, we see that both methods are used against the `/notes` path. So, POST will create a `note` and GET will retrieve all the `notes` that have been created.
-	
-1.  Start by creating a couple of notes. Click the `POST /notes` link in the left column. The other columns will scroll so that you're looking at information and controls pertaining to the `POST /notes` service.
 
-1.  To test creation of a note, scroll down in the right hand column until the `Call operation` button is visible at the bottom. Just above the `Call operation` button you'll see a `Generate` link. This link will generate dummy data for you to create a test call to this service.
+11.	Click 'Update and save'
+12.	Close the welcome screen admin menu to see the results on the home page of the portal
 
-1.  Press the `Generate` link to generate some sample data.
-	
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/generate-data.png)
-	
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/generate.png)
-	
-    Your data will look different, but you're ready to test the service.
-	
-1.  Go ahead and press the `Call operation` button and scroll down to the `Response` section to see the results.
-	
-	In the results, you should see a `Code: 200 OK` which indicates that a new `note` was created. If you received a different response, see the troubleshooting steps below.
-	
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/POST-results.png)
-	
-	{% include troubleshooting.html content="
-        You may see an error displayed that mentions a CORS issue. This has to do with certificates in your browser. Go ahead an click the given link to rectify this, accept any certificate, close the opened tab, and press the `Call operation` button again.  Additionally, be sure not to skip step 5, as doing a `POST` operation without generating payload will cause an error.
-    " %}
-	
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/CORS-support-error.png)
-	
-	{% include troubleshooting.html content="
-        If you see a 500 error like the one below, make sure you press the `Generate` button before you press the `Call operation` button again. Otherwise, you're trying to create a duplicate note.
-    " %}
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/duplicateRecordError.png)
+### Remove text on the banner image
+1.	Click 'Content' > 'Blocks'
+2.	On the 'Welcome banner' click edit
+3.	Click on the html button and edit the html source to remove all the html which is there currently.
 
-1.  Once you have created one note, go ahead and create another one or two.
+      <img src="/madridapiclab1/images/16.png" width="700">
+  
+4.	Click update in the HTML source editor
+5.	Scroll down and save the configuration
+6.	Close the content editor to see the results on the home page
 
-    {% include note.html content="
-        It should be noted that you don't need to use the `Generate` link. You can type data directly into the `Parameters`. You can also use `Generate` to create a template for you to use and then change the generated parameters. You may also notice that not all the parameters are always generated. This is because only the `title` parameter is required. Try pressing `Generate` several times to get a feel for how it works.
-    " %}
-	
-1.  Finally, let's test the `GET /notes` service. We should have two, three, or more notes created at this point. In the left hand column click the `GET /notes` link.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/get-notes.png)
-
-1.  Scroll down to the `Call operation` button and press it. Then scroll down to the results.
-	
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/GET-results.png)
-		
-    You should see all the notes that you generated in the result set.
-
-    {% include important.html content="
-        If you see an empty array, `[]`, as your result, then you've not successfully created any notes. This is also true if you stop the application and restart it. With the notes example, we're using an in-memory database which means that nothing is persisted to disk. So, it is lost when the server is stopped and restarted. Lab 2 will walk through how to connect to your application to a persistent data source.
-    " %}
-
-1.  At this point, we are done testing the app locally. Click on the `Run` button again to return to the application launch screen.
-
-1.  Click on the `Stop` button to stop the application.
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/9.png)
-
-### 1.4	- Publishing the API to the Developer Portal
-
-1.  Click the `Publish` icon.
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/publishButton.png)
-
-1.  Select `Add and Manage Targets` from the menu.
-
-1.  Select `Add IBM Bluemix target`.
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/15.png)
-
-1.  Provide connection information to sign into the IBM API Connect Bluemix service then click the `Sign in` button: **Note you should be logged in already to Bluemix, so you should not need to reauthenticate.  It will automatically populate your information and have the `Sandbox` catalog already selected, so at this point you only need to click `Next`.
-	
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/10.png)
-
-1.  On the "Select an App" screen, choose `None` application and click the `Save` button.
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/11.png)
-
-    Our offline toolkit environment is now configured to speak to API Connect on Bluemix.
-
-1.  Click `Publish` button once more and select our target:
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/12.png)
-
-1.  Here we have the opportunity to select what gets published. If we were working on multiple API products as part of this project, we could choose specific ones to publish.
-	
-	Also, the option exists to only Stage the product. A Stage-only action implies that we'll push the configuration to the Management server, but not actually make it available for consumption yet. The reason for doing this may be because your user permissions only allow staging, or that a different group is in charge of publishing Products.
-	
-	Click the `Publish` button:
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/publish-api.png)
-
-1.  Click the `Publish` button to make the API available in the Developer Portal.
-
-1.  Wait a moment while the Product is published, a Success message will appear letting you know the step is complete:
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/publish-success.png)
-
-### 1.5	- Browsing the API in the Developer Portal
-
-1.  To view the Published API, direct your browser to your developer portal link you set up in the previous lab.
-
-1.  This will bring you to your portal login page.  In order to view the API we have, we will need to register ourself as a developer on the portal. 
-
-    {% include important.html content="
-        When you first create your developer portal it will create an `admin` user that is used to administrate the site.  This admin user cannot be used as a user to register applications and subscribe to API Products. So the next few steps will be devoted to creating a new developer user.
-    " %}
-
-1.  If you are still logged in as the `admin` user from the previous lab, Click on `Logout` at the top right to log out of the portal as the admin user. Otherwise, move on to the next step.
-
-1.  Click on `Create an account` at the top right
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/35.png)
-	
-1.  Enter in your account information for the developer account.  This must be a different email address than your bluemix account.  Click `Create New Account` once all the requisite data in the form has been filled out.
-
-1.  A validation email will be sent out to the email address used at sign up.  Click on the validation link and then you will have completed the sign up process and will be authenticated into the page.
-
-1.  Once you are authenticated in, you can then Browse the `API Products` and see your `notes` product that is now published to your environment.
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab1/26.png)
-
-1.  At this point we will stop, as we will be building additional apis and services that will be published to the portal.
-
-	It should be noted that the notes application has more to it than we've shown in this lab. You're encouraged to dig in and discover the custom method that's implemented. In future labs, we'll be doing more work in the Developer Portal. For instance we'll be customizing the portal theme, registering an application, subscribing to APIs and testing them from a separate consumer application.
-
-1.  Close the `Firefox` web browser. If a warning is presented about closing multiple tabs, deselect the option to notify you in the future and click the `Close Tabs` button.
-
-1.  In the terminal, use the `control+c` keyboard command to quit the API Designer program.
 
 ## Conclusion
 
@@ -261,4 +284,4 @@ In this lab you learned:
 + How to test a REST API
 + How to publish an API to the Developer Portal
 
-Proceed to [Lab 2 - Create a LoopBack Application](lab2.html)
+Proceed to [Lab 2 - Protecting a Payments API using oAuth 2.0](lab2.html)
