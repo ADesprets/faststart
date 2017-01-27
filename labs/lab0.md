@@ -370,5 +370,5 @@ In this lab you learned:
 
 **Options:** Either
 
-- Proceed to [Lab 1 - Quick Start](lab1.html) **or**
-- Proceed to [Lab 2 - Create a LoopBack Application](lab2.html)
+- Proceed to [Lab 1 - Customising the API Connect Developer Portal](lab1.html) **or**
+- Proceed to [Lab 2 - Protecting a Payments API using oAuth 2.0](lab2.html)
