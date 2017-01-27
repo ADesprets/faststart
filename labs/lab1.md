@@ -284,4 +284,4 @@ In this lab you learned:
 + How to create a Representational State Transfer (REST) API definition
 
 
-Proceed to [Lab 2 - Protecting a Payments API using oAuth 2.0](/europe/2017/lab2.html)
+Proceed to [Lab 2 - Protecting a Payments API using oAuth 2.0](/faststart/europe/2017/lab2.html)
