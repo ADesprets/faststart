@@ -46,41 +46,40 @@ children:
     output: 'web'
 
 - title: 'Lab 1 - Customising the API Connect Developer Portal'
-  url: '/faststart/lab1.html'
+  url: '/faststart/europe/2017/lab1.html'
   output: 'web'
   children:
 
   - title: 'Basic Developer Portal Customisation'
-    url: '/faststart/lab1.html#creating-a-notes-application'
+    url: '/faststart/europe/2017/lab1.html#basic-developer-portal-customisation'
     output: 'web'
 
   - title: 'Advanced Developer Portal Customisation'
-    url: '/faststart/lab1.html#launching-the-notes-application'
+    url: '/faststart/europe/2017/lab1.html#advanced-developer-portal-customisation'
     output: 'web'
 
-
 - title: 'Lab 2 - Protecting a payments API using oAuth 2.0'
-  url: '/faststart/lab2.html'
+  url: '/faststart/europe/2017/lab2.html'
   output: 'web'
   children:
 
   - title: 'Creating a notes Application'
-    url: '/faststart/lab1.html#creating-a-notes-application'
+    url: '/faststart/europe/2017/lab1.html#creating-a-notes-application'
     output: 'web'
 
   - title: 'Launcing the notes Application'
-    url: '/faststart/lab1.html#launching-the-notes-application'
+    url: '/faststart/europe/2017/lab1.html#launching-the-notes-application'
     output: 'web'
 
   - title: 'Testing the notes Application'
-    url: '/faststart/lab1.html#testing-the-notes-application'
+    url: '/faststart/europe/2017/lab1.html#testing-the-notes-application'
     output: 'web'
 
   - title: 'Publishing the API to the Developer Portal'
-    url: '/faststart/lab1.html#publishing-the-api-to-the-developer-portal'
+    url: '/faststart/europe/2017/lab1.html#publishing-the-api-to-the-developer-portal'
     output: 'web'
 
   - title: 'Browsing the API in the Developer Portal'
-    url: '/faststart/lab1.html#browsing-the-api-in-the-developer-portal'
+    url: '/faststart/europe/2017/lab1.html#browsing-the-api-in-the-developer-portal'
     output: 'web'
 

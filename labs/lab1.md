@@ -2,7 +2,7 @@
 title: Lab 1 - Customising the API Connect Developer Portal
 toc: true
 sidebar: labs_sidebar
-permalink: /lab1.html
+permalink: /europe/2017/lab1.html
 summary: In this lab, you’ll get a chance to use the APIC command line interface for creating LoopBack applications, the intuitive Web-based user interface, and explore the various aspects associated with solution’s configuration of RESTful based services as well as their operation.
 ---
 
@@ -37,7 +37,7 @@ In this section, you will leverage a custom prebuilt theme. A theme file is pack
 |`favicon.ico`|In web development, you can provide a small logo for your site that appears near the address bar and in the bookmarks folder in a visitor's browser. This logo is called the favicon. Drupal provides a default one, which is the recognizable water drop logo. Using the Drupal logo as the favicon is fine but if you really want to make your site stand out, you should provide your own. Favicon files are in the .ico format and are extremely small in dimensions. The default Drupal favicon is 32 pixels high by 32 pixels wide, many browsers use a 16 x 16 pixel version that can be included in the same file. This is because the favicon is only an icon that shows up in the address bar and favorites (bookmarks) list and typically there is not a lot of room there. Any favicon that you create should be just as small.|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 |`logo.png`|The default logo that appears at the top left-hand side of the developer portal page.|
 
-#### 7.1.1 - Install and Configure a Custom Theme
+#### 1.1.1 - Install and Configure a Custom Theme
 
 Now that we have explained the contents of a custom theme file, it is time to load the custom theme.
 
@@ -49,47 +49,47 @@ Now that we have explained the contents of a custom theme file, it is time to lo
     
     Click on the `Portal URL` link to launch the Developer Portal.
     
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/launch-portal.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/launch-portal.png)
 
 1.  Login into the developer portal as an administrator using a username of `admin` and the password you set up in Lab 1.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/PortalAdminLogin.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/PortalAdminLogin.png)
 
 1.  From the Administrator menu, select `Appearance` and then `Install new theme`.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/InstallNewPortalTheme.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/InstallNewPortalTheme.png)
 
 1.  In the `Install from a URL` field, enter the following URL then click the `Install` button:
 
-    [https://github.com/ibm-apiconnect/pot/raw/gh-pages/assets/lab7/portal-theme.zip](https://github.com/ibm-apiconnect/pot/raw/gh-pages/assets/lab7/portal-theme.zip)
+    [https://github.com/ibm-apiconnect/pot/raw/gh-pages/assets/lab7/portal-theme.zip](https://ibm-apiconnect.github.io/faststart/assets/lab7/portal-theme.zip)
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/install-theme.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/install-theme.png)
     
 1.  Once the installation of the custom theme completes, click the `Enable newly added themes` link.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/enable-theme.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/enable-theme.png)
    
 1.  Scroll down the list of themes to find the `thinkibm_connect 7.50` theme.
 
     Click the `Enable and set default link` link.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/set-default-theme.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/set-default-theme.png)
 	
 1.  Click the `Home` icon in the top-left corner of the screen to return to the home page.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/CloseThemeSettings.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/CloseThemeSettings.png)
 
-#### 7.1.2 - Customize the Welcome Banner
+#### 1.1.2 - Customize the Welcome Banner
 
 Now we want to change the default Welcome banner to use our custom Welcome banner image. 
 
 1.  Navigate to the blocks content page by selecting `Content > Blocks` from the admin menu.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/ThinkIBMBlocks.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/ThinkIBMBlocks.png)
 
 1.  Underneath operations select `Edit` to the right of the Welcome banner block.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/edit-welcome-banner.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/edit-welcome-banner.png)
 
 1.  Before you can set the image, you will need to download it to your local computer's disc drive. You can download the file from this URL:
 
@@ -97,7 +97,7 @@ Now we want to change the default Welcome banner to use our custom Welcome banne
 
 1.  Scroll down the banner edit page, locate the *Image* section and click the `Chose file` button to launch the file explorer.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/choose-banner-file.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/choose-banner-file.png)
 
 1.  Find the `welcome-banner.png` file. Then, click the `Open` button.
 
@@ -107,62 +107,63 @@ Now we want to change the default Welcome banner to use our custom Welcome banne
 
 1.  Click on the `x` button to close the content block settings.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/close-content-block.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/close-content-block.png)
 
-#### 7.1.3 - Change the Region Settings for the Content Blocks
+#### 1.1.3 - Change the Region Settings for the Content Blocks
 
 The region settings for some of the content blocks were reset when we loaded the new theme, so we will set these back.
 
 1.  Navigate to the region settings for block content page by selecting `Structure > Blocks` from the admin menu.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/ThinkIBMBlockRegionSettings.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/ThinkIBMBlockRegionSettings.png)
 
 1.  Locate the **Sidebar first** block. You will see entries for `Navigation`, `Support` and `User login`.
 
 1.  For **both** the `Navigation` and `User Login` entries, select `- None -` from the drop down menu.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/SetBlockRegionstoNone.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/SetBlockRegionstoNone.png)
 
 1.  The only entry left in the section should be `Support`.
 	
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/sidebar-first-complete.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/sidebar-first-complete.png)
 
 1.  Scroll down to the bottom of the screen anc click the `Save Blocks` button.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/SaveBlockRegions.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/SaveBlockRegions.png)
 
 1.  Scroll back to the top and click the `x` button to close the block region settings.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/close-region-block.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/close-region-block.png)
 
 1.  You are finished with customizing the developer portal. There is a lot more that can be customized than what we have time for in this lab. Log out of the developer portal.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab7/PortalAdminLogout.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/lab7/PortalAdminLogout.png)
 
-### 1.2	- Launching the `notes` Application
+### 1.2	- Advanced Developer Portal Customisation
 
 ### Adding the slogan
 1.	Click Configuration > System > Site Information 
 2.	In the 'Slogan' field enter: 'Welcome to the API Portal'
 
-      <img src="/madridapiclab1/images/1.png" width="450">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/1.png)
+
 
 3.	Save the configuration 
 
-      <img src="/madridapiclab1/images/2.png" width="450">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/2.png)
  
 4.	Close the current window
 
-      <img src="/madridapiclab1/images/3.png" width="700">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/3.png)
  
 5.	Click Appearance > Settings 
 6.	Navigate to the thinkibm_connect theme settings
  
-      <img src="/madridapiclab1/images/4.png" width="700">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/4.png)
  
 7.	Expand the Toggle display section and check the box for 'Site Slogan' 
 
-      <img src="/madridapiclab1/images/5.png" width="450">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/5.png)
  
 8.	Save the configuration 
 9.	You will notice that you will not be able to see any changes. This is because the color scheme of the slogan is set to white text on the white background. 
@@ -175,7 +176,7 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
 
 1.	To activate the ‘Custom CSS’ extension go to Appearance > Setting > thinkibm_connect > Extensions > Check box ‘Custom CSS’.
 
-        <img src="/madridapiclab1/images/6.png" width="700">
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/6.png)
       
 2.	Save the changes by clicking ‘Save Configuration’ at the bottom of the page. 
 3.	Now if you go to Appearance > Setting > thinkibm_connect then scroll down to the menu at the bottom (extensions), there will be a new menu tab called ‘Custom CSS’. In here, any custom CSS declarations can be set. 
@@ -194,32 +195,32 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
                   padding-top: 14px;
                 }
 
-      <img src="/madridapiclab1/images/7.png" width="700">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/7.png)
 
 5.	Now scroll to the bottom of the page and hit ‘Save Configuration’. 
 6.	Scroll to the top and hit the X to close the Appearance menu and view the changes you have made. 
 
-      <img src="/madridapiclab1/images/8.png" width="700">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/8.png)
       
 
 ### Custom footer block
 1.	Click 'Structure' > 'Blocks' 
 2.	Click configure on the 'Developer portal footer' block
 
-        <img src="/madridapiclab1/images/9.png" width="700">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/9.png)
 
 3.	Open the wysiwyg (button with html on it) editor and paste in the contents below. 
 
           <div class="footer_wrapper_div"><div class="upper_grey_block"><div class="table_div_left" style="text-align:    center;">&nbsp;</div></div><div class="lower_grey_block"><div class="centered_link" style="text-align: center;"><a>Terms of use |</a>&nbsp;<a>Terms &amp; Conditions</a>&nbsp; |&nbsp;<a>Privacy Policy</a>&nbsp; |&nbsp;<a>Cookies</a>&nbsp;<a>Accessibility</a>&nbsp; |&nbsp;<a>Sitemap</a></div><div class="list_div_left">&nbsp;</div><div class="list_div_left" style="text-align: center;"><a></a>© IBM 2016. All Rights Reserved</div></div></div>
 
-      <img src="/madridapiclab1/images/10.png" width="700">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/10.png)
 
 
 
 4.	Click Update 
 5.	Select 'Full HTML' from the 'Text Format' drop down 
 
-      <img src="/madridapiclab1/images/11.png" width="700">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/11.png)
   
 6.	Save the block from the foot of the page
 7.	Close the window and view the changes made to the footer. 
@@ -232,7 +233,7 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
 2.	Click 'edit' on the 'page-welcome' page (towards the bottom of the list)
 3.	Click 'content'
 
-        <img src="/madridapiclab1/images/12.png" width="700">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/12.png)
     
 4.	Using the cog on 'Middle (conditional)' select 'Add content'
 5.	Click Custom Blocks
@@ -244,16 +245,16 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
                                         
         <div class="light_grey_homepage_block"><div class="left_side_50_div"><div class="fixed_width_block_div"><h3 class="block_heading_2 align_text_center" style="text-align: center;"><span style="color: #444849;">Create a seamless experience with direct access to our services and intergrate them with your business</span></h3><h3 class="block_heading_2 align_text_center" style="text-align: center;"><span style="color: #444849;">Look through our API products to find the right one for your business. There's dedicated documentaion on hand for you to get started.&nbsp;</span></h3><h3 class="block_heading_2 align_text_center" style="text-align: center;"><span style="color: #444849;">If you have any questions about how to get started or need help with your existing intergration, take a look in our support section.</span></h3></div></div></div>
                       
-      <img src="/madridapiclab1/images/13.png" width="700">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/13.png)
 
 8.	Click update on the html source editor
 
-      <img src="/madridapiclab1/images/14.png" width="700">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/14.png)
       
 9.	Click finish. 
 10.	Drag the Homepage block 1 that you just created to the top of the middle section (above the features_apis_title block). This will position this new section on the page underneath the welcome banner.
 
-      <img src="/madridapiclab1/images/15.png" width="700">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/15.png)
 
 
 11.	Click 'Update and save'
@@ -265,7 +266,7 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
 2.	On the 'Welcome banner' click edit
 3.	Click on the html button and edit the html source to remove all the html which is there currently.
 
-      <img src="/madridapiclab1/images/16.png" width="700">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/16.png)
   
 4.	Click update in the HTML source editor
 5.	Scroll down and save the configuration
@@ -275,13 +276,12 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
 
 ## Conclusion
 
-**Congratulations!** You have developed and published your first API!
+**Congratulations!** You have customised your first Developer Portal!
 
 In this lab you learned:
 
 + How to create a simple LoopBack application
 + How to create a Representational State Transfer (REST) API definition
-+ How to test a REST API
-+ How to publish an API to the Developer Portal
 
-Proceed to [Lab 2 - Protecting a Payments API using oAuth 2.0](lab2.html)
+
+Proceed to [Lab 2 - Protecting a Payments API using oAuth 2.0](/europe/2017/lab2.html)
