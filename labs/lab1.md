@@ -264,6 +264,7 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
 5.	Scroll down and save the configuration
 6.	Close the content editor to see the results on the home page
 
+Tip: If you are finding the text is not disappearing from the banner, it may be due to another language other than English is set as default. Try repeating this section but go into the translations of the block and remove the HTML from the English version of the block specifically. 
 
 ## Conclusion
 
