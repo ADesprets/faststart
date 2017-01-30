@@ -130,7 +130,7 @@ The region settings for some of the content blocks were reset when we loaded the
 
     ![](https://ibm-apiconnect.github.io/faststart/images/lab7/close-region-block.png)
 
-1.  You are finished with customizing the developer portal. There is a lot more that can be customized than what we have time for in this lab. Log out of the developer portal.
+1.  You are finished with customizing the developer portal. There is a lot more that can be customized than what we have time for in this lab. 
 
     ![](https://ibm-apiconnect.github.io/faststart/images/lab7/PortalAdminLogout.png)
 
