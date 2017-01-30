@@ -59,6 +59,9 @@ Now that we have explained the contents of a custom theme file, it is time to lo
     [https://ibm-apiconnect.github.io/faststart/assets/lab7/portal-theme.zip](https://ibm-apiconnect.github.io/faststart/assets/lab7/portal-theme.zip)
 
     ![](https://ibm-apiconnect.github.io/faststart/images/lab7/install-theme.png)
+
+    {% include important.html content="If the 'Install from a URL' does returns an error, please download the zip file for the theme to your local computer.  Use the 'Upload a module or theme archive to install' to upload the zip file for the theme.
+    " %}
     
 1.  Once the installation of the custom theme completes, click the `Enable newly added themes` link.
 
@@ -76,7 +79,7 @@ Now that we have explained the contents of a custom theme file, it is time to lo
 
 1.  After returning to the Home Page of your Developer Portal, it should look like the image below. 
 
-     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/logo-uploaded-final.png) 
+     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/theme-uploaded-final-2.png) 
       
 
 #### **1.1.2 - Customize the Welcome Banner**
@@ -291,7 +294,9 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
 5.	Scroll down and save the configuration.
 6.	Close the content editor to see the results on the home page
 
-Tip: If you are finding the text is not disappearing from the banner, it may be due to another language other than English is set as default. Try repeating this section but go into the translations of the block and remove the HTML from the English version of the block specifically. 
+{% include note.html content="If you are finding the text is not disappearing from the banner, it may be due to another language other than English is set as default. Try repeating this section but go into the translations of the block and remove the HTML from the English version of the block specifically.
+" %}
+
 
 ## Conclusion
 
