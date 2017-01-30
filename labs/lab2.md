@@ -52,124 +52,204 @@ The components in this lab are:
 
 ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/accesscodeflow.png)
 
+### Sequence of events
 
-## Step by Step Lab Instructions
+The sequence of events to make a payment is:
 
-### 2.1 - Create a Working Directory
+1. The third party calls the 'POST /payments' operation on behalf of the user to initiate the payment. The operation returns a payment ID to the third party.
 
-1.  Open up a new window for your Host Operating systems' command line interface (e.g. `cmd` for Windows or `terminal` for Linux).
+2. The third party redirects the user to the Authentication and Authorization Server (passing the payment ID) to sign-in, approve the payment and obtain an authorization code.
 
-1.  Create a project directory in the on your filesystem called ThinkIBM. 
+3. The user (client) passes the authorization code to the third party, and the third party exchanges it for an access token (this is done by calling an operation exposed by the Payment Authorization (oAuth 2.0) API). 
 
-    ```shell
-    mkdir ThinkIBM
-    ```
+4. The third party calls the POST /payments/{id}/execute operation passing the payment ID and access token to execute the payment
 
-1.  Change to the new `ThinkIBM` directory by typing:
+### Practical Notes
+- In this lab you will be acting as the user, user client, financial institution and third party provider. 
+- All the steps described above (e.g. sequence of events) you will be performing manually so you can understand how the flow and interactions work. 
+- When running commands, particularly 'curl' commands, watch out for spaces and 'quotes'.
+- Each section in the lab has a brief explanation of what you will be performing in that particular section. However, it's worth keeping in mind the wider picture of what you are building and relate each section back to it. 
 
-    ```shell
-    cd ThinkIBM
-    ```
+## Part 1: Set up API Connect
 
-### 2.2 - Create the Inventory App
+This section can be skipped if you already have the API Connect Toolkit installed locally, and a Bluemix account with an API Connect service provisioned. If not, please follow the link below and complete ‘Lab 0 - Setup IBM API Connect’. Once complete, return to this document and move onto part 2. 
 
-To create your Inventory Application you will use LoopBack technology that comes with the API Connect Developer Toolkit. LoopBack enables you to quickly compose scalable APIs, runs on top of the Express web framework and conforms to the Swagger 2.0 specification. LoopBack is a highly-extensible, open-source Node.js framework that enables you to:
+[Setup IBM API Connect Instructions](https://ibm-apiconnect.github.io/faststart/lab0.html) 
 
-* Create dynamic end-to-end REST APIs with little or no coding.
-* Access data from Relational and NoSQL Databases, SOAP and other REST APIs.
-* Incorporates model relationships and access controls for complex APIs.
+## Part 2: Secure and test the Payments API
 
-LoopBack consists of:
+### 2.1 Create a directory and clone the API Connect project from Github
 
-* A library of Node.js modules.
-* Yeoman generators for scaffolding applications.
+This section will guide you through the set up of the base API Connect project on your laptop. You will need to have all the prerequisites specified in part 1 in order to perform these steps. 
 
-1.  From the command line terminal, type the following command to create the `inventory` application:
+1.	Navigate to a root folder on your laptop where you would like to keep your apic project
+2.	Run the following command to create a directory
 
-    ```shell
-    apic loopback
-    ```
+        mkdir madridApic
+                        
+3.	Change to the directory you just created by running the following command
 
-1.  You will be asked to name your application. Call it `inventory` and press the `Enter` or `Return` key.
+        cd madridApic
+                       
+4.  Clone the API Connect project from github by running the following command
 
-    ```
-         _-----_
-        |       |    .--------------------------.
-        |--(o)--|    |  Let's create a LoopBack |
-       `---------´   |       application!       |
-        ( _´U`_ )    '--------------------------'
-        /___A___\    
-         |  ~  |     
-       __'.___.'__   
-     ´   `  |° ´ Y `
+         git clone https://github.com/ibm-apiconnect/faststart-code
+
+
+5.	Change to the directory you just created by running the following command
+
+         cd faststart-code
+
+6.	Run the following command to install the required NPM dependencies
+
+          npm install 
+
+### 2.2 Exploring the Payments API
+
+This section will help you explore the payments API that is provided for you and the 2 operations it includes. The API is based on loopback and has a model named 'payment'. An in memory data store is used to store the data associated with the model. It is worth mentioning that if you have an API based on loopback then it has a Node.Js application (microservice) associated with it, as well as the API. This is an important consideration when it comes to deploying your API later, as you have to deploy the application as well as the API product. 
+
+1.	Run the following command to start the API Connect toolkit:
+
+        
+        apic edit
+        
+2.	The toolkit will open up in your web browser and request you to sign into Bluemix, please do so using your IBM ID and password. 
+3.	You will observe an API already exists named ‘payments’. This uses an in memory database to store details of payments and exposes a number of operations to allow payments to be reserved and later executed. 
+ 
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-2-1.png)
+
+4.	Click on the payments api to go into its design. 
+
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-2-2.png) 
+        
+        
+5.	Scroll down until you can see the paths of the API. You will see 2 paths have been created for you:
+ - a. POST / payments – this allows a payment reservation to be created and passes back a payment ID
+ - b. POST payments/{id}/execute – this executes the payment and finalises it. It accepts a payment ID as a parameter in the URL (passed back from operation a). 
+ 
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-2-3.png)
+
+6.  Click on the 'All APIs' buton on the top left to return back to the main screen.
+
+
+### 2.3 Creating the oAuth 2.0 Provider
+
+This section will guide you through the creation and configuration of the oAuth 2.0 provider. The oAuth 2.0 provider will use the 'Access Code' flow and will use a redirect to the Authentication and Authorization Server of the financial institution to confirm the users identify and allow them to confirm they want to allow the third party to make payments on their behalf.
+
+1.	Click on ‘Add’ and select ‘OAuth 2.0 Provider API’.
+
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-1.png)
+        
+
+2.	Name the oAuth API ‘payment authorization’ and select ‘Create API’.
+ 
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-2.png)
+
+        
+3.	Scroll down to the oAuth 2 section and set:
+
+        - Client Type: Confidential 
+        - Scope Name: payment_approval (delete the other 2 scopes)
+        - Grants: Check only ‘Access Code’, uncheck the others
+        - Identify Extraction: Redirect
+        - Redirect URL: https://aaservergk.eu-gb.mybluemix.net/login
+        - Authentication URL: https://thinkibm-services.mybluemix.net/auth
+        - TLS Profile: leave blank
+        - Authorize application user using: Authenticated
+        -Leave all other settings as default
+
      
-    ? What's the name of your application? (ThinkIBM) inventory
-    ```
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-4.png)
 
-1.  Next you will be asked to supply the name of the directory where the application will be created.
 
-    LoopBack will default the project directory name to the name of the application.
+4.	Click save on the top right.
+5.	Scroll down until you see the section to declare parameters.
+6.	Click the plus icon to create a new parameter, set:
 
-    Press the `Enter` or `Return` key to accept the default value of `inventory`.
+        - Name: payment_id
+        - Located in: Query
+        - Required: yes (tick)
+        - Type: String
+ 
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-5.png)
 
-1.  Next you will be asked to select the type of application.
+7.	Click save on the top right.
+8.	Scroll to the ‘paths’ section of the API. 
+9.	Expand the GET /oauth2/authorize
+10.	Click ‘Add Parameter’ and select ‘payment_id’.
 
-    Use the arrow keys to select the `empty-server` option and press the `Enter` or `Return` key. 
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-6.png)
+           
+11.	Click save on the top right.
 
-    ```shell
-    ❯ empty-server (An empty LoopBack API, without any configured models or datasources) 
-    ```
+### 2.4 Securing the Payments API with the oAuth Provider
 
-1.  At this point, the project builder will install the core dependencies for our Node.js application.
+This part of the lab will walk you through the steps required to secure the payments API using oAuth 2.0 provider you created in the previous section. 
 
-    Please wait until you see the `Next steps:` section.
+   - a. POST / payments – this operation is secured with a client secret and ID only since it only initiates the payment (i.e. places it in a pending state). 
 
-1.  Change to the newly created `inventory` directory:
+   - b. POST payments/{id}/execute – this operation is secured with oAuth 2.0 (since it’s the operation which executes the payment and finalises the financial transition). 
+   
+1.	Press ‘All APIs’ at the top to return to the list of APIs
+2.	Click on the payments API to go in and see the details. 
+ 
+     <img src="/madridapiclab2/images/2-4-1.png" width="450">
 
-    ```shell
-    cd inventory
-    ```
+3.	Scroll down to the ‘Security Definitions’ section and click the + icon to create a new security definition. Select oAuth, then set:
 
-### 2.3 - Create a Data Source Connector to Cloudant
+        - Name: payment approval
+        - Flow: Access Code
+        - Authorization URL: see below
+        - Token URL: see below
+        - Add a scope using the (+), scope name: payment_approval
 
-The datasource is what allows the API to communicate with the backend data repository. In this case we will be using Cloudant to store the inventory item information.
 
-There are two parts to this. First is the definition of how to connect to the backend system. The second is downloading the actual loopback connector for Cloudant. The connector is akin to an ODBC or JDBC connector.
+        ````
+        Authorization URL is made up of:
 
-1.  In your terminal ensure that you are in the `ThinkIBM/inventory` directory. 
+        https://<bluemix host region url>/<organization-space_name>/<catalog_name>/payment-authorization/oauth2/authorize
 
-1.  In your terminal, type: 
+        For example, 
+                United Kingdom Bluemix URL: api.eu.apiconnect.ibmcloud.com
+                Organization: gary.kean@uk.ibm.com
+                Space: APIConnect
+                Catalog: workshop-demo
 
-    ```shell
-    apic create --type datasource
-    ```
+        the Authorization URL would look like this: 
+        https://api.eu.apiconnect.ibmcloud.com/garykeanukibmcom-apiconnect/workshop-demo/payment-authorization/oauth2/authorize
 
-    The terminal will bring up the configuration wizard for our new datasource for the item database. The configuration wizard will prompt you with a series of questions. Some questions require text input, others offer a selectable menu of pre-defined choices.
-	
-    Answer the questions with the following data:
+        Token URL is made up of:
 
-    ```text
-    ? Enter the data-source name: item-db-cloudant
-    ? Select the connector for item-db-cloudant: IBM Cloudant DB (supported by StrongLoop)
-    Connector-specific configuration:
-    ? Connection String url to override other settings (eg: https://username:password@host): https://820923e0-be08-46f5-a34a-003f91f00f5c-bluemix:10d585c237c8d7b599b79cfcca39cb63356f2cea7d79abf27f284801b3c149d9@820923e0-be08-46f5-a34a-003f91f00f5c-bluemix.cloudant.com
-    ? database: item
-    ? username: (leave blank)
-    ? password: (leave blank)
-    ? modelIndex: (leave blank)
-    ```
-	
-	{% include note.html content="
-        By typing Y (Yes) to the question `Install loopback-connector-cloudant`, the Cloudant Connector will be downloaded and saved to your project automatically. 
-        <br/><br/>
-        This will create a connection profile in the `~/ThinkIBM/inventory/server/datasources.json` file. It is effectively the same as running the following to install the connector:
-        <br/><br/> 
-        `npm install loopback-connector-cloudant --save`
-        <br/><br/>
-        For more information on the LoopBack Connector for Cloudant, see:
-        <br/><br/>
-        [https://www.npmjs.com/package/loopback-connector-cloudant](https://www.npmjs.com/package/loopback-connector-cloudant)
-    " %}
+        https://<bluemix host region url>/<organization-space_name>/<catalog_name>/payment-authorization/oauth2/token
+
+        For example,
+                United Kingdom Bluemix URL: api.eu.apiconnect.ibmcloud.com
+                Organization: gary.kean@uk.ibm.com
+                Space: APIConnect
+                Catalog: workshop-demo
+
+        the Token URL would look like this: 
+        https://api.eu.apiconnect.ibmcloud.com/garykeanukibmcom-apiconnect/workshop-demo/payment-authorization/oauth2/token
+
+        You can double check these URLs in the developer portal later once you have published your API.
+        ````
+
+
+   <img src="/madridapiclab2/images/2-4-2.png" width="450">
+        
+        
+        
+4.Scroll down to the ‘Security’ section of the API and you will see that the client ID and the client Secret are the default security measures added to each operation of the API unless configured otherwise. We therefore have to specifically add the oAuth 2.0 provider we created to the execute payment operation. Ensure the ‘Security’ section of your API matches the screen shot below.  
+ 
+   <img src="/madridapiclab2/images/2-4-3.png" width="450">
+
+5.Scroll down to the ‘Paths section and expand the path for ‘POST payments/{id}/execute’.
+
+6.Ensure the security options for the API does not use the ‘API security definitions’ and instead is set to have the ‘payment approval’ oAuth  (note the client ID and client secret should also be unset). 
+ 
+   <img src="/madridapiclab2/images/2-4-5.png" width="450">
+
+7.Click save on the top right.
 
 ### 2.4 - Launch the API Connect Designer
 
