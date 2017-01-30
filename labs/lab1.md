@@ -3,14 +3,14 @@ title: Lab 1 - Customising the API Connect Developer Portal
 toc: true
 sidebar: labs_sidebar
 permalink: /europe/2017/lab1.html
-summary: In this lab, you’ll get a chance to use the APIC command line interface for creating LoopBack applications, the intuitive Web-based user interface, and explore the various aspects associated with solution’s configuration of RESTful based services as well as their operation.
 ---
 
 ## Objective 
 The developer portal section of this lab is split into 3 parts, which must be followed in order since each part builds upon the previous part. From a high level, the 3 parts are:
-  1.	Set up API Connect (lab 0 in the PoT)
-  2.	Perform the basic developer portal customisation lab (lab 7.1 in PoT) 
-  3.	Perform the advanced developer portal customisation lab (new lab and the steps are described in this document) 
+  
+1.	Set up API Connect (lab 0 in the PoT)
+2.	Perform the basic developer portal customisation lab (Part 1.1 in this lab) 
+3.	Perform the advanced developer portal customisation lab (Part 1.2 in this lab) 
 
 ## Before you begin
 For this lab, you will be starting with your local image and installing node.js and the developer toolkit.  After that, if you do not already have a Bluemix account, you will be creating one for you and enabling the API Connect Essentials service on your account. The instructions you will follow will vary by the host operating system you are using. The three host OS's supported by this are `Windows`, `Linux - Intel` and `Linux - Mac`.  Skip to the section for your appropriate operating system.
