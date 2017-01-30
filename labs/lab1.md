@@ -76,7 +76,7 @@ Now that we have explained the contents of a custom theme file, it is time to lo
 
 1.  After returning to the Home Page of your Developer Portal, it should look like the image below. 
 
-     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/theme-uploaded-final.png ) 
+     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/theme-uploaded-final.png) 
       
 
 #### **1.1.2 - Customize the Welcome Banner**
@@ -228,9 +228,13 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
 
     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/11.png)
   
-6.	Save the block from the foot of the page
+6.	Save the block from the footer of the page
+
 7.	Close the window and view the changes made to the footer. 
 
+8.  The footer should look like the image below. 
+
+     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/customfooter-uploaded-final.png) 
 
 ### **Adding a Custom Block to the Home Page**
 1.	Click Structure > Pages
