@@ -191,11 +191,11 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
                   padding-top: 14px;
                 }
 		
-		/* Adjusts the menu bar: */
-		#page
-		{
-		   padding-top: 100px;
-		}
+			/* Adjusts the menu bar: */
+			#page
+			{
+			   padding-top: 100px;
+			}
 
     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/7.png)
 
