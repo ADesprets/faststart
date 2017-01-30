@@ -304,318 +304,221 @@ Now we have a product, we are ready to publish. In this lab, API Connect on Blue
 12.	Select ‘Stage or Publish products’, then ‘Select specific products’ and choose the ‘payments’ product. 
 
  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-6.png)
- 
- 
+
+
 13.	You will see a message saying ‘Successfully published products’ on the top left.
 
 
-### 2.7 - Verify API
+### 2.7 Registering an app on the developer portal
 
-To confirm that the API has been correctly mapped and can interface with the datasource, you will run the server and test the API.
+This is the first part of the lab where we are changing our role (or perspective). Up until now we have been assuming the role of a developer in the financial institution who has published an API to allow third party providers to make payments on behalf of its customers (users). 
 
-1.  Click the `Run` button to start the `inventory` LoopBack application
+Now we will be assuming the role of a third party developer who is building an application to make payments on behalf of the banks customers. 
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/run.png)
+The developer portal is a key part of API Connect and is where consumers of APIs go to discover and subscribe to APIs. In order to subscribe to an API you must first create an application. 
 
-1.  Wait a moment while the servers are started. Proceed to the next step when you see the following:
+As a third party developer you will visit the developer portal of the financial institution and register an application. 
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/app-running.png)
 
-1.  Click the `Explore` button to review your APIs. 
+1.	Go to your developer portal and sign in using your IBM ID. It may ask you to create an ‘organization’, call this 'third party' then click ‘Submit. 
+2.	Click on ‘Apps’ in the top menu bar
+3.	Click on ‘Create new app’
+4.	Call the app ‘madridApicOAuthApp’
+5.	In the ‘OAuth Redirect URI’ field enter ‘https://example.com/redirect’ (this specifies where the bank will redirect the user to after oAuth authentication - it's important it matches the redirect URI specified later)  
+6.	Click ‘Submit’ 
+7.	Click to show the client secret and client id and note these down somewhere (they will be needed later).
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/explore.png)
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-7-1.png)
 
-1.  On the left side of the page, notice the list of paths for the `inventory` API. These are the paths and operations that were automatically created for you by the LoopBack framework simply by adding the `item` data model. The operations allow users the ability to create, update, delete and query the data model from the connected data source.
 
-1.  Click the `GET /items` operation.
+### 2.8 Subscribing your oAuth application to the API
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/api-designer-explore-page-get-items-api.png)
+As a third party developer, in the previous step you registered an application in the developer portal of the financial institution.  You will now subscribe the application you created to the payments API product. This means you can now start to call the payments and payment authorization APIs. 
 
-1.  By clicking the `GET /items` operation, your screen will auto-focus to the correct location in the window. In the center pane you will see a summary of the operation, as well as optional parameters and responses.
+1.	Press the ‘API Products’ button in the menu bar and click on payments 
+ 
+  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-8-1.png)
 
-    On the right side you will see sample code for executing the API in various programming languages and tools such as cURL.
+2.	Click on ‘Subscribe’ and select the radio button to confirm you want to subscribe your ‘madridApicOAuthApp’ app to the Payments API product. 
 
-    In addition to the sample code, if you look further down the page you will see an example response, URL, API identification information, and API parameters.
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-8-2.png)
 
-1.  Scroll down slowly to locate the `Call operation` button.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/api-designer-explore-page-call-operation.png)
+### 2.9 Calling the Payments API to initiate the payment
 
-1. Click the `Call operation` button to invoke the API.
+Everything is now set up from a financial institution perspective (the APIs are published) and from a third party provider perspective (an application is registered and subscribed to the APIs). It is therefore time to start testing the end-to-end flow of making a payment. 
 
-    {% include troubleshooting.html content="The first time you invoke the API, you may receive an error. The error occurs becuase the browser does not trust the self-signed certificate from the MicroGateway. To resolve the error, click on the link in the response window and accept the certificate warning.
-    " %}
+Note in reality these the end-to-end payment process would be orchestrated by an application, however for the purposes of the lab, we will do them manually to understand the sequence of events. 
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/cert-error.png)
+The first step is to initiate the payment by calling the POST /payments API.
 
-1.  Once complete, return to the API explorer and click on the `Call operation` button again.
 
-1.  Scroll down to see the `Request` and `Response` headers. 
+1.	On the left hand side, click on the payment API to expand the operations
+2.	Click on the POST /payments API
+3.	Scroll down until you can see the tester for this API on the right hand side
+4.	In the client ID field drop down, select the ‘madridApicOAuthApp’ and enter your client secret from step 2.7.7. 
+5.	In the body enter 
 
-    ```text
-    Request
-    GET https://localhost:4002/inventory/items
-    APIm-Debug: true
-    Content-Type: application/json
-    Accept: application/json
-    X-IBM-Client-Id: default
-    X-IBM-Client-Secret: SECRET
-    ```
+                {
+                  "amount": 1000,
+                  "beneficiary": "John Doe"
+                }
 
-    ```text
-    Response
-    Code: 200 OK
-    Headers:
-    content-type: application/json; charset=utf-8
-    x-ratelimit-limit: 100
-    x-ratelimit-remaining: 99
-    x-ratelimit-reset: 3599999
-    ```
 
-1.  Scroll further and the payload returned from the GET request is displayed.
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-9-1.png)
 
-    ```json
-    [
-      {
-        "name": "Dayton Meat Chopper",
-        "description": "Punched-card tabulating machines and time clocks...",
-        "img": "images/items/meat-chopper.jpg",
-        "img_alt": "Dayton Meat Chopper",
-        "price": 4599.99,
-        "rating": 0,
-        "id": 5
-      },
-      ...
-    ]
-    ```
 
-1.  Test the `GET /items/count` operation by following the same process above. You should receive a count of inventory items.
+6.	Click the ‘Call Operation’ button and you should observe the response. The response will have the request payload in it plus an ID. Take note of this ID (payment_id) as it will be required later. 
+ 
+  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-9-2.png)
 
-    ```json
-    {
-      "count": 12
-    }
-    ```
 
-1.  Click on the `Stop` button to shut down the running application.
+### 2.10 Retrieving the authorization code 
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/stop-application.png)
+In this step you will be retrieving the authorization code. The authorization code is the intermediately token given to the users client after they have authenticated with the authentication and authorization server (AAS) of the financial institution and approved the payment. It is an indication that the customer is happy to grant the third party provider access to make the payment on their behalf.
 
-1.  Click on the `X` in the top-right portion of the screen to leave the API Explorer view.
+Here you are assuming the role of the customer who is signing into the AAS of the financial institution and giving your permission to the third party provider. 
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/leave-explorer.png)
+1.	On the left hand side, click on the payment authorization API to expand the operations
+2.	Click on the GET /oauth2/authorize operation and you will see a URL in a section named ‘Try this operation’. Take note of this URL, it will look something like
 
-### 2.8 - Create the second Cloudant Data Source for Item Reviews
+        https://api.eu.apiconnect.ibmcloud.com/garykeanukibmcom-apiconnect/lab/payment-authorization/oauth2/authorize
 
-So far, we have created a LoopBack application which provides APIs around our inventory items stored in a Cloudant database in Bluemix.
 
-In the next section, you will create the data model for item reviews which will use Cloudant to store the review data.
 
-First you must create a data source entry for the Cloudant Reviews DB.
+  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-1.png)
+        
+        
+3.	You will call the URL you took note of via a web browser, however we must append some parameters to it in order to properly authenticate and get the authorization code. You must add
 
-In the earlier steps, you used the command line to create a data source connection. This time you will use the API Designer.
+        - response_type=code
+        - scope=payment_approval
+        - payment_id= see step 2.9.6
+        - client_id= see step 2.7.7
+        - redirect_uri=https://example.com/redirect
 
-1.  From the top navigation menu, select the `Data Sources` link to switch views.
+Here is an example:
+        
+        https://api.eu.apiconnect.ibmcloud.com/garykeanukibmcom-apiconnect/workshop-demo/payment-authorization/oauth2/authorize?response_type=code&scope=payment_approval&payment_id=999&client_id=dcebcce4-91ae-4af4-9c14-c812e1677937&redirect_uri=https://example.com/redirect
+        
+        
+4.Now call you constructed in the previous step from your web browser (just like you were visiting http://ibm.com). You will be redirected to the external authorization and authentications login page 
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/data-sources.png)
+5.Enter 
 
-1.  Click on the `Add +` button.
+- username=johndoe 
+- password=password 
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/add-new-datasource.png)
+then click login
+ 
+  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-2.png)
 
-1.  Name the new datasource `review-db-cloudant` and click the `New` button.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/add-new-datasource-name.png)
+6.Click ‘approve payment’
+ 
+   ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-3.png)
 
-1.  Complete the new datasource configuration using the values in the table below.
 
-    |Field      |Value        |
-    |-----------|-------------|
-    |URL        |https://820923e0-be08-46f5-a34a-003f91f00f5c-bluemix:10d585c237c8d7b599b79cfcca39cb63356f2cea7d79abf27f284801b3c149d9@820923e0-be08-46f5-a34a-003f91f00f5c-bluemix.cloudant.com|
-    |Database   |review       |
-    |Username   |<leave blank>|
-    |Password   |<leave blank>|
-    |Model Index|<leave blank>|
+7.You will be redirected to ‘example.com/redirect’. Appended to the URL there will be the authorization code you require to obtain the access token in the next step. Copy this code and keep note of it. 
 
-1.  Click on the `Save` icon to save the new data source connection. The toolkit will test the connection and report back. 
+The authorization code from the URL below is: AAKm5rxLqxTqUNAnqRQIfg4raNxLxGiI4SWNvIfczRNGFjxm9658XEzcNg25ErFYROEp5OL9Z46EKVi_HLuzHmDiQnT9BoNQ6cAWue9atl2gHQ
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/add-new-datasource-success.png)
+     https://example.com/redirect?code=AAKm5rxLqxTqUNAnqRQIfg4raNxLxGiI4SWNvIfczRNGFjxm9658XEzcNg25ErFYROEp5OL9Z46EKVi_HLuzHmDiQnT9BoNQ6cAWue9atl2gHQ
 
-### 2.9 - Create Model for Reviews
 
-The `review` data model will be used to store item reviews left by buyers. The reviews will be stored in a Cloudant.
+   ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-4.png)
 
-In the earlier steps, you used the API Designer User Experience to create a data model. This time you will use the command line to create the `review` model.
-
-1.  Click the `x` button on your browser tab to close the API Designer.
-
-1.  Select the `Terminal Emulator` from the taskbar to open the command line.
-
-1.  Even though we closed the browser, the API Designer application itself is still running.
-
-    Hold the `control` key and press the `c` key to end the API Designer session:
 	
-    ```shell
-    control+c
-    ```
-	
-    This will return you to the command line prompt.
+### 2.11 Retrieving the access token 
 
-1.  Type the following command to create the `review` data model:
+In this section you will be retrieving the access token using the authorization code obtained in the previous section. 
 
-    ```shell
-    apic create --type model
-    ```
+When the authorization code was received by users client, it was then passed back to the third party provider via the redirect url. The third party provider then calls the POST /oauth2/token operation inside the payment authorization API of the financial institution to exchange the authorization code for the access token. 
 
-1.  Enter the properties for the `review` model:
+You are assuming the role of the third party provider in this section.
 
-    {% include important.html content="You will **not** expose the review mode as a REST API. This is because you create a relationship between item and review later that will create the REST APIs you will use.
-    " %}
 
-    ```text
-    ? Enter the model name:  review
-    ? Select the data-source to attach review to:
-    	> review-db-cloudant (cloudant)
-    ? Select models base class:
-    	> PersistedModel
-    ? Expose review via the REST API? (Y/n):  N
-    ? Common model or server only?
-    	> common
-    ```
-	
-1.  Continue using the wizard to add properties for the `review` model:
+1.	Return back to the developer portal in your web browser and go back to the payments API product.
 
-1.  The first property is the `date` property:
+2.	Expand the payment authorization API and select the POST /oauth2/token operation 
 
-    ```text
-    Enter an empty property name when done.
-    ? Property name: date
-    ? Property type:
-    	> date
-    ?Required? Y
-    ?Default value [leave blank for none]: <leave blank>"
-    ```
+3.	On the right hand side you will see a URL in a section named ‘Try this operation’. Take note of this URL, it will look something like
 
-1.  Next add the `reviewer_name` property:
+        https://api.eu.apiconnect.ibmcloud.com/garykeanukibmcom-apiconnect/lab/payment-authorization/oauth2/token
 
-    ```text
-    Let's add another review property.
-    Enter an empty property name when done.
-    ? Property name: reviewer_name
-    ? Property type:
-    	> string
-    ? Required? N
-    ? Default value [leave blank for none]: <leave blank>
-    ```
+4.	We will use a ‘curl’ command on the command line/terminal to get the access token from the authorization code. Therefore, open up a new command line/terminal session. 
 
-1.  Next add the `reviewer_email` property:
+5.	Before we can call the command to get the access token, we need to add a few parameters to the command. We must add:
 
-    ```text
-    Let's add another review property.
-    Enter an empty property name when done.
-    ? Property name: reviewer_email
-    ? Property type:
-    	> string
-    ? Required? N
-    ? Default value [leave blank for none]: <leave blank>
-    ```
+        - Client ID= see step 2.7.7
+        - Client Secret =see step 2.7.7
+        - grant_type=authorization_code
+        - redirect_uri=https://example.com/redirect
+        - code= see step 2.10.7
 
-1.  Next add the `comment` property:
+The structure is:
 
-    ```text
-    Let's add another review property.
-    Enter an empty property name when done.
-    ? Property name: comment
-    ? Property type:
-    	> string
-    ? Required? N
-    ? Default value [leave blank for none]: <leave blank>
-    ```
+     curl -v -k -u <client id>:<client secret> -X POST -d 'grant_type=authorization_code&redirect_uri=https://example.com/redirect&code=< authorization code>’ '<token url>’
 
-1.  Finally add a property for the item `rating`:
+For example:
+       
+     curl -v -k -u 14e0a9f9-cf4e-4e51-9ac6-c7152ced73ca:pY7gE3vK5oY5pL1dW4pO5hS3uE2dN7gV7pL3fR5xL1tI6vE5uE -X POST -d 'grant_type=authorization_code&redirect_uri=https://example.com/redirect&code=AALHIXey-Vnp6qpoFZqFgrxvU26nkAwn7PVzgxEnFNhcX-CU8nX1yx1DyLzPxDlL279Gz-2QeYy65pTirlE5FEAHcGybo_EqwPGcmykNfps-Fw' 'https://api.eu.apiconnect.ibmcloud.com/garykeanukibmcom-apiconnect/lab/payment-authorization/oauth2/token'
 
-    ```text
-    Let's add another review property.
-    Enter an empty property name when done.
-    ? Property name: rating
-    ? Property type:
-    	> number
-    ? Required? Y
-    ? Default value [leave blank for none]: <leave blank>
-    ```
+Ensure the spaces between the different parts of the command are correct. If your curl command doesn't work, also try removing the quotes surrounding the URL for the token.
 
-1.  To close the wizard, the next time it asks you to add another review proporty, just press `Enter` or `Return` to exit.
 
-### 2.10 - Create a Relationship Between the `item` and `review` Data Models
 
-The next step in this lab is to create a relationship between the `item` model and the `review` model. Even though the models reference entities in entirely different databases, API Connect provides a way to create a logical relationship between them. This logical relationship is then exposed as additional operations for the item model.
 
-1.  In the terminal session, type the following command:
+6.  Run the command you constructed in the previous step on the command line/terminal. The response should look like below. Take a note of the access token in the response. 
 
-    ```shell
-    apic loopback:relation
-    ```
 
-1.  Enter the details for the relationship as follows:
+    { "token_type":"bearer", "access_token":"AAEkNTc3YTM5MzMtN2YyMC00NTdlLWI2YWYtZjBjZTNlZTVjZGRjqROf_74P_zTkHshgnZPpiIbWN6_JJyS9MzxPlkD17aRufXpdyaj4D3fgkla-JTRq7UV69n97wpjV0l9odtJeuYYRReX--UhPcyRZXVOVxnU", "expires_in":3600, "scope":"payment_approval" }
+  
+  
+7.  The authorization code in generated in the previous section only has a few minutes before it becomes invalid. It may therefore be necessary to repeat section 2.10 and generate a new authorization code.
 
-    ```text
-    ? Select the model to create the relationship from:
-    	> item
-    ? Relation type:
-    	> has many
-    ? Choose a model to create a relationship with:
-    	> review
-    ? Enter the property name for the relation:  reviews
-    ? Optionally enter a custom foreign key: <leave blank>
-    ? Require a through model? No
-    ```
-	
-### 2.11 - Verify the Relationship
 
-To verify that the relationship has been created, you will open the API Connect Designer and view the operations on the Explore page.
+### 2.12 Executing the payment using the access token 
 
-1.  In the terminal session, type the following command to launch the API Connect Designer window:
+Now the third party provider has the access token and the payment ID from earlier. It can now finalise the payment by calling the POST /payments/{id}/execute operation inside the payment API of the financial institution. 
 
-    ```shell
-    apic edit
-    ```
+You are assuming the role of the third party provider in this section.
 
-1.  Click on the `inventory` link from the APIs tab.
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/inventory-link.png)
+1.	Return back to the developer portal in your web browser and go back to the payments API product.
+2.	Expand the payments API and select the POST /payments/{id}/execute operation.
 
-1.  Scroll down to the `Paths` section of the API definition.
+  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-12-1.png)  
+        
+3.	Scroll down until you can see the ‘Identification’ section. Select you app name from the ‘Client ID’ drop down and enter your client secret (See step 2.7.7).
+ 
+   ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-12-2.png) 
 
-    Notice how three new API paths have been created which allow access to item revew data:
+ 
+4.	Scroll down until you can see the ‘Authorization’ section in the tester on the right hand side. Enter your access token (see step 2.11.6). 
 
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/new-paths.png)
+5.	Scroll further down and enter the payment id you are executing in the id field (see step 2.9.6)
 
-1.  Click the `x` button on your browser tab to close the API Designer.
+  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-12-3.png)
 
-1.  Select the `Terminal Emulator` from the taskbar to open the command line.
+        
+6.	Click ‘Call Operation’ to execute the call. The response should be the payment_id you specified now with an ‘executed’ state. 
 
-1.  Even though we closed the browser, the API Designer application itself is still running.
+            
+            {
+            "amount": 1000,
+            "beneficiary": "John Doe",
+            "state": "executed",
+            "id": 5
+            }
 
-    Hold the `control` key and press the `c` key to end the API Designer session:
-	
-    ```shell
-    control+c
-    ```
-	
-    This will return you to the command line prompt.
 
 ## Conclusion
 
-**Congratulations!** In this lab you learned:
+**Congratulations!** You have successfully configured the Payments API to use oAuth 2.0.
 
-+ How to create a multi-model LoopBack application
-+ How to create a Representational State Transfer (REST) API definition using IBM Connect API Designer
-+ How to create a Representational State Transfer (REST) API definition using IBM Connect Command Line
-+ How to use the LoopBack Cloudant Connector
-+ How to test a REST API
-+ How to create relationships between models
 
-Lab 3 will build on what you have already created to enable processing hooks and publish the APIs to the API Manager.
 
-Proceed to [Lab 3 - Customize and Deploy an Application](lab3.html)
+
+
 
