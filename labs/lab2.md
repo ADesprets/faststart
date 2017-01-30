@@ -76,7 +76,7 @@ This section can be skipped if you already have the API Connect Toolkit installe
 
 [Setup IBM API Connect Instructions](https://ibm-apiconnect.github.io/faststart/lab0.html) 
 
-## Part 2: Secure and test the Payments API
+## Part 2: Secure and Test the Payments API
 
 ### 2.1 Create a directory and clone the API Connect project from Github
 
@@ -252,7 +252,7 @@ This part of the lab will walk you through the steps required to secure the paym
 7.  Click save on the top right.
 
 
-### 2.5 Adding the oAuth provider to the product
+### 2.5 Adding the oAuth Provider to the Product
 
 In API Connect you package your APIs into products and this is how they are consumed. This section will guide you through packaging up the payments API and the payment authorization API into a single product. 
 
@@ -268,7 +268,7 @@ In API Connect you package your APIs into products and this is how they are cons
 5.	Click on save on the top right. 
 
 
-### 2.6 Publish product to Bluemix
+### 2.6 Publish Product to Bluemix
 
 Now we have a product, we are ready to publish. In this lab, API Connect on Bluemix is our deployment target. This section will show you how to add Bluemix as a target and how to publish your API and loopback application (microservice). 
 
@@ -309,7 +309,7 @@ Now we have a product, we are ready to publish. In this lab, API Connect on Blue
 13.	You will see a message saying ‘Successfully published products’ on the top left.
 
 
-### 2.7 Registering an app on the developer portal
+### 2.7 Registering an App on the Developer Portal
 
 This is the first part of the lab where we are changing our role (or perspective). Up until now we have been assuming the role of a developer in the financial institution who has published an API to allow third party providers to make payments on behalf of its customers (users). 
 
@@ -331,7 +331,7 @@ As a third party developer you will visit the developer portal of the financial 
  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-7-1.png)
 
 
-### 2.8 Subscribing your oAuth application to the API
+### 2.8 Subscribing your oAuth Application to the API
 
 As a third party developer, in the previous step you registered an application in the developer portal of the financial institution.  You will now subscribe the application you created to the payments API product. This means you can now start to call the payments and payment authorization APIs. 
 
@@ -344,7 +344,7 @@ As a third party developer, in the previous step you registered an application i
  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-8-2.png)
 
 
-### 2.9 Calling the Payments API to initiate the payment
+### 2.9 Calling the Payments API to initiate the Payment
 
 Everything is now set up from a financial institution perspective (the APIs are published) and from a third party provider perspective (an application is registered and subscribed to the APIs). It is therefore time to start testing the end-to-end flow of making a payment. 
 
@@ -373,7 +373,7 @@ The first step is to initiate the payment by calling the POST /payments API.
   ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-9-2.png)
 
 
-### 2.10 Retrieving the authorization code 
+### 2.10 Retrieving the Authorization Code 
 
 In this step you will be retrieving the authorization code. The authorization code is the intermediately token given to the users client after they have authenticated with the authentication and authorization server (AAS) of the financial institution and approved the payment. It is an indication that the customer is happy to grant the third party provider access to make the payment on their behalf.
 
@@ -429,7 +429,7 @@ The authorization code from the URL below is: AAKm5rxLqxTqUNAnqRQIfg4raNxLxGiI4S
    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-4.png)
 
 	
-### 2.11 Retrieving the access token 
+### 2.11 Retrieving the Access Token 
 
 In this section you will be retrieving the access token using the authorization code obtained in the previous section. 
 
@@ -478,7 +478,7 @@ Ensure the spaces between the different parts of the command are correct. If you
 7.  The authorization code in generated in the previous section only has a few minutes before it becomes invalid. It may therefore be necessary to repeat section 2.10 and generate a new authorization code.
 
 
-### 2.12 Executing the payment using the access token 
+### 2.12 Executing the Payment using the Access Token 
 
 Now the third party provider has the access token and the payment ID from earlier. It can now finalise the payment by calling the POST /payments/{id}/execute operation inside the payment API of the financial institution. 
 

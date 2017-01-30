@@ -63,23 +63,51 @@ children:
   output: 'web'
   children:
 
-  - title: 'Creating a notes Application'
-    url: '/faststart/europe/2017/lab1.html#creating-a-notes-application'
+  - title: 'Create a directory and clone the API Connect project from Github'
+    url: '/faststart/europe/2017/lab2.html#create-a-directory-and-clone-the-api-connect-project-from-github'
     output: 'web'
 
-  - title: 'Launcing the notes Application'
-    url: '/faststart/europe/2017/lab1.html#launching-the-notes-application'
+  - title: 'Exploring the Payments API'
+    url: '/faststart/europe/2017/lab2.html#exploring-the-payments-api'
     output: 'web'
 
-  - title: 'Testing the notes Application'
-    url: '/faststart/europe/2017/lab1.html#testing-the-notes-application'
+  - title: 'Creating the oAuth 2.0 Provider'
+    url: '/faststart/europe/2017/lab2.html#creating-the-oauth-20-provider'
     output: 'web'
 
-  - title: 'Publishing the API to the Developer Portal'
-    url: '/faststart/europe/2017/lab1.html#publishing-the-api-to-the-developer-portal'
+  - title: 'Securing the Payments API with the oAuth Provider'
+    url: '/faststart/europe/2017/lab2.html#securing-the-payments-api-with-the-oauth-provider'
     output: 'web'
 
-  - title: 'Browsing the API in the Developer Portal'
-    url: '/faststart/europe/2017/lab1.html#browsing-the-api-in-the-developer-portal'
+  - title: 'Adding the oAuth Provider to the Product'
+    url: '/faststart/europe/2017/lab2.html#adding-the-oauth-provider-to-the-product'
     output: 'web'
 
+  - title: 'Publish Product to Bluemix'
+    url: '/faststart/europe/2017/lab2.html#publish-product-to-bluemix'
+    output: 'web'
+
+  - title: 'Registering an App on the Developer Portal'
+    url: '/faststart/europe/2017/lab2.html#registering-an-app-on-the-developer-portal'
+    output: 'web'
+
+  - title: 'Subscribing your oAuth Application to the API'
+    url: '/faststart/europe/2017/lab2.html#subscribing-your-oauth-application-to-the-api'
+    output: 'web'
+
+  - title: 'Calling the Payments API to initiate the Payment'
+    url: '/faststart/europe/2017/lab2.html#calling-the-payments-api-to-initiate-the-payment'
+    output: 'web'
+
+  - title: 'Retrieving the Authorization Code'
+    url: '/faststart/europe/2017/lab2.html#retrieving-the-authorization-code'
+    output: 'web'
+
+  - title: 'Retrieving the Access Token'
+    url: '/faststart/europe/2017/lab2.html#retrieving-the-access-token'
+    output: 'web'
+
+  - title: 'Executing the Payment using the Access Token'
+    url: '/faststart/europe/2017/lab2.html#executing-the-payment-using-the-access-token'
+    output: 'web'
+    
