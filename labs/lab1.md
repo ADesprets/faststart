@@ -243,8 +243,10 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
 
     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/12.png)
     
-4.	Using the cog on 'Middle (conditional)' select 'Add content'
-5.	Click Custom Blocks
+4.	Using the cog on 'Middle (conditional)' select 'Add content'.
+
+5.	Click Custom Blocks.
+
 6.	Click on ‘New Custom Content’ and set:
       - Administrative Title: Homepage block 1
       - Title: leave blank
@@ -260,21 +262,24 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/14.png)
       
 9.	Click finish. 
+
 10.	Drag the Homepage block 1 that you just created to the top of the middle section (above the features_apis_title block). This will position this new section on the page underneath the welcome banner.
 
     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/15.png)
 
 
-11.	Click 'Update and save'
-12.	Close the welcome screen admin menu to see the results on the home page of the portal
+11.	Click 'Update and Save'.
 
+12.	Close the welcome screen admin menu to see the results on the home page of the Portal. Refer to the image below 
+
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/customblock-uploaded-final.png) 
 
 ### **Remove text on the Banner Image**
-1.	Click 'Content' > 'Blocks'
-2.	On the 'Welcome banner' click edit
+1.	Click 'Content' > 'Blocks'.
+2.	On the 'Welcome banner' click edit.
 3.	Click on the html button and edit the html source to remove the text in the HTML which read 'Innovate with our APIs'.
-4.	Click update in the HTML source editor
-5.	Scroll down and save the configuration
+4.	Click update in the HTML source editor.
+5.	Scroll down and save the configuration.
 6.	Close the content editor to see the results on the home page
 
 Tip: If you are finding the text is not disappearing from the banner, it may be due to another language other than English is set as default. Try repeating this section but go into the translations of the block and remove the HTML from the English version of the block specifically. 
