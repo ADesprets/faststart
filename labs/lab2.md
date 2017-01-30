@@ -433,7 +433,7 @@ The authorization code from the URL below is: AAKm5rxLqxTqUNAnqRQIfg4raNxLxGiI4S
      https://example.com/redirect?code=AAKm5rxLqxTqUNAnqRQIfg4raNxLxGiI4SWNvIfczRNGFjxm9658XEzcNg25ErFYROEp5OL9Z46EKVi_HLuzHmDiQnT9BoNQ6cAWue9atl2gHQ
 
 
-    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-4.png)
+   ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-4.png)
 
 	
 ### **2.11 Retrieving the Access Token** 
@@ -474,13 +474,17 @@ For example:
 Ensure the spaces between the different parts of the command are correct. If your curl command doesn't work, also try removing the quotes surrounding the URL for the token.
 
 
-6.  Run the command you constructed in the previous step on the command line/terminal. The response should look like below. Take a note of the access token in the response. 
+6.Run the command you constructed in the previous step on the command line/terminal. The response should look like below. Take a note of the access token in the response. 
 
 
 	{ "token_type":"bearer", "access_token":"AAEkNTc3YTM5MzMtN2YyMC00NTdlLWI2YWYtZjBjZTNlZTVjZGRjqROf_74P_zTkHshgnZPpiIbWN6_JJyS9MzxPlkD17aRufXpdyaj4D3fgkla-JTRq7UV69n97wpjV0l9odtJeuYYRReX--UhPcyRZXVOVxnU", "expires_in":3600, "scope":"payment_approval" }
   
-  
-7.  The authorization code in generated in the previous section only has a few minutes before it becomes invalid. It may therefore be necessary to repeat section 2.10 and generate a new authorization code.
+
+**Tip:** If you are struggling to get the cURL command to work, then try using the test tool inside the API Connect Developer portal. From there you can use the UI to get the access token from the authorization code. Simply paste in the authorization code to the field named 'Authorize' then click 'Get Token' - this will automatically populate the access token in the field. The screenshot below illustrates what the UI looks like. 
+
+   ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-12-3.png)
+
+7.The authorization code in generated in the previous section only has a few minutes before it becomes invalid. It may therefore be necessary to repeat section 2.10 and generate a new authorization code.
 
 
 ### **2.12 Executing the Payment using the Access Token**

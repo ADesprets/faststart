@@ -13,7 +13,7 @@ The developer portal section of this lab is split into 3 parts, which must be fo
 3.	Perform the advanced developer portal customisation lab (Part 1.2 in this lab) 
 
 ## Before you begin
-For this lab, you will be starting with your local image and installing node.js and the developer toolkit.  After that, if you do not already have a Bluemix account, you will be creating one for you and enabling the API Connect Essentials service on your account. The instructions you will follow will vary by the host operating system you are using. The three host OS's supported by this are `Windows`, `Linux - Intel` and `Linux - Mac`.  Skip to the section for your appropriate operating system.
+Lab 0 - Setup IBM API Connect must be completed before this lab can be performed. 
 
 ## Step by Step Lab Instructions
 
@@ -130,7 +130,7 @@ The region settings for some of the content blocks were reset when we loaded the
 
     ![](https://ibm-apiconnect.github.io/faststart/images/lab7/close-region-block.png)
 
-1.  You are finished with customizing the developer portal. There is a lot more that can be customized than what we have time for in this lab. Log out of the developer portal.
+1.  You are finished with customizing the developer portal. There is a lot more that can be customized than what we have time for in this lab. 
 
     ![](https://ibm-apiconnect.github.io/faststart/images/lab7/PortalAdminLogout.png)
 
@@ -191,6 +191,12 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
                   height: 95px;
                   padding-top: 14px;
                 }
+		
+			/* Adjusts the menu bar: */
+			#page
+			{
+			   padding-top: 100px;
+			}
 
     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/7.png)
 
@@ -257,14 +263,12 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
 ### **Remove text on the Banner Image**
 1.	Click 'Content' > 'Blocks'
 2.	On the 'Welcome banner' click edit
-3.	Click on the html button and edit the html source to remove all the html which is there currently.
-
-    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/16.png)
-  
+3.	Click on the html button and edit the html source to remove the text in the HTML which read 'Innovate with our APIs'.
 4.	Click update in the HTML source editor
 5.	Scroll down and save the configuration
 6.	Close the content editor to see the results on the home page
 
+Tip: If you are finding the text is not disappearing from the banner, it may be due to another language other than English is set as default. Try repeating this section but go into the translations of the block and remove the HTML from the English version of the block specifically. 
 
 ## Conclusion
 
