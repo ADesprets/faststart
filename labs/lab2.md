@@ -203,7 +203,19 @@ This part of the lab will walk you through the steps required to secure the paym
         - Token URL: see below
         - Add a scope using the (+), scope name: payment_approval
 
+		The easiest way to get the Authorization and Token URLs is to log onto your API Connect instance on Bluemix and click into the catalogue you are planning to deploy to (e.g. Sandbox). Click on ‘Settings’ on the menu bar then the sub-menu for ‘Endpoints’. Note down the ‘Base URL’. 
+         
+         The Authorization URL is:
 
+         <Base URL>/payment-authorization/oauth2/authorize
+
+         The Token URL is:
+
+         <Base URL>/payment-authorization/oauth2/token
+
+
+         An alternative method of retrieving these URLs is described below.
+	 
         ````
         Authorization URL is made up of:
 
@@ -238,13 +250,11 @@ This part of the lab will walk you through the steps required to secure the paym
     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-2.png)
         
         
-4.  Scroll down to the ‘Security’ section of the API and you will see that the client ID and the client Secret are the default security measures added to each operation of the API unless configured otherwise. We therefore have to specifically add the oAuth 2.0 provider we created to the execute payment operation. Ensure the ‘Security’ section of your API matches the screen shot below.  
+4.  Scroll down to the ‘Paths section of the API.
 
-    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-3.png) 
+5.  Expand the path for ‘POST payments/{id}/execute’.
 
-5.  Scroll down to the ‘Paths section and expand the path for ‘POST payments/{id}/execute’.
-
-6.  Ensure the security options for the API does not use the ‘API security definitions’ and instead is set to have the ‘payment approval’ oAuth  (note the client ID and client secret should also be unset). 
+6.  Ensure the security options for the API does not use the ‘API security definitions’ and instead is set to have the ‘payment approval’ oAuth, the clientIdHeader and the clientSecretHeader all set (checked).
  
     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-5.png)
 
