@@ -256,10 +256,7 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
 ### **Remove text on the Banner Image**
 1.	Click 'Content' > 'Blocks'
 2.	On the 'Welcome banner' click edit
-3.	Click on the html button and edit the html source to remove all the html which is there currently.
-
-    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/16.png)
-  
+3.	Click on the html button and edit the html source to remove the text in the HTML which read 'Innovate with our APIs'.
 4.	Click update in the HTML source editor
 5.	Scroll down and save the configuration
 6.	Close the content editor to see the results on the home page
