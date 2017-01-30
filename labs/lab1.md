@@ -213,6 +213,11 @@ Here we are going to add custom CSS to our theme. For this we are going to use t
 6.	Scroll to the top and hit the X to close the Appearance menu and view the changes you have made. 
 
     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/8.png)
+
+7.  After returning to the Home Page of your Developer Portal, it should look like the image below. 
+
+     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/theme-uploaded-final.png) 
+    
       
 
 ### **Custom Footer Block**
