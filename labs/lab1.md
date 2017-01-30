@@ -109,6 +109,10 @@ Now we want to change the default Welcome banner to use our custom Welcome banne
 
     ![](https://ibm-apiconnect.github.io/faststart/images/lab7/close-content-block.png)
 
+1.  After returning to the Home Page of your Developer Portal, it should look like the image below. 
+
+     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/final-112-step9.png) 
+
 #### **1.1.3 - Change the Region Settings for the Content Blocks**
 
 The region settings for some of the content blocks were reset when we loaded the new theme, so we will set these back.
@@ -173,7 +177,7 @@ The region settings for some of the content blocks were reset when we loaded the
 
 
 
-### **Colour schemes and custom CSS**
+### **Colour Schemes and Custom CSS**
 Here we are going to add custom CSS to our theme. For this we are going to use the ‘Custom CSS’ extension in the developer portal. Note the ‘Custom CSS’ extension is designed to make small CSS changes in the case of emergencies in production. However, the ‘Custom CSS’ extension is also useful to quickly make CSS changes at development time when you are building the look and feel of a developer portal. It saves the need to re-upload the theme every time a new CSS change is made throughout development. Once you are happy with the CSS and it is stable, it should be moved from the ‘Custom CSS’ extension and placed inside the overrides.css file inside the theme itself. 
 
 1.	To activate the ‘Custom CSS’ extension go to Appearance > Setting > thinkibm_connect > Extensions > Check box ‘Custom CSS’.
