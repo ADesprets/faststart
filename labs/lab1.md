@@ -76,7 +76,7 @@ Now that we have explained the contents of a custom theme file, it is time to lo
 
 1.  After returning to the Home Page of your Developer Portal, it should look like the image below. 
 
-     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/theme-uploaded-final.png) 
+     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/logo-uploaded-final.png) 
       
 
 #### **1.1.2 - Customize the Welcome Banner**
