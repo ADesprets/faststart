@@ -13,7 +13,7 @@ The developer portal section of this lab is split into 3 parts, which must be fo
 3.	Perform the advanced developer portal customisation lab (Part 1.2 in this lab) 
 
 ## Before you begin
-For this lab, you will be starting with your local image and installing node.js and the developer toolkit.  After that, if you do not already have a Bluemix account, you will be creating one for you and enabling the API Connect Essentials service on your account. The instructions you will follow will vary by the host operating system you are using. The three host OS's supported by this are `Windows`, `Linux - Intel` and `Linux - Mac`.  Skip to the section for your appropriate operating system.
+Lab 0 - Setup IBM API Connect must be completed before this lab can be performed. 
 
 ## Step by Step Lab Instructions
 
