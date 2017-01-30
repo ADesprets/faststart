@@ -193,7 +193,7 @@ This part of the lab will walk you through the steps required to secure the paym
 1.	Press ‘All APIs’ at the top to return to the list of APIs
 2.	Click on the payments API to go in and see the details. 
  
-     <img src="/madridapiclab2/images/2-4-1.png" width="450">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-1.png)
 
 3.	Scroll down to the ‘Security Definitions’ section and click the + icon to create a new security definition. Select oAuth, then set:
 
@@ -235,81 +235,79 @@ This part of the lab will walk you through the steps required to secure the paym
         ````
 
 
-   <img src="/madridapiclab2/images/2-4-2.png" width="450">
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-2.png)
         
         
-        
-4.Scroll down to the ‘Security’ section of the API and you will see that the client ID and the client Secret are the default security measures added to each operation of the API unless configured otherwise. We therefore have to specifically add the oAuth 2.0 provider we created to the execute payment operation. Ensure the ‘Security’ section of your API matches the screen shot below.  
+4.  Scroll down to the ‘Security’ section of the API and you will see that the client ID and the client Secret are the default security measures added to each operation of the API unless configured otherwise. We therefore have to specifically add the oAuth 2.0 provider we created to the execute payment operation. Ensure the ‘Security’ section of your API matches the screen shot below.  
+
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-3.png) 
+
+5.  Scroll down to the ‘Paths section and expand the path for ‘POST payments/{id}/execute’.
+
+6.  Ensure the security options for the API does not use the ‘API security definitions’ and instead is set to have the ‘payment approval’ oAuth  (note the client ID and client secret should also be unset). 
  
-   <img src="/madridapiclab2/images/2-4-3.png" width="450">
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-5.png)
 
-5.Scroll down to the ‘Paths section and expand the path for ‘POST payments/{id}/execute’.
 
-6.Ensure the security options for the API does not use the ‘API security definitions’ and instead is set to have the ‘payment approval’ oAuth  (note the client ID and client secret should also be unset). 
+7.  Click save on the top right.
+
+
+### 2.5 Adding the oAuth provider to the product
+
+In API Connect you package your APIs into products and this is how they are consumed. This section will guide you through packaging up the payments API and the payment authorization API into a single product. 
+
+1.	Press ‘All APIs’ at the top to return to the list of APIs.
+2.	Click on products.
+3.	Click on the ‘Payments’ product to see the details.
+4.	Scroll down to the APIs section and press the (+) button. Check the ‘payment authorization’ API then press 'apply' to add it to the product.
+
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-5-1.png)
+
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-5-2.png)
+
+5.	Click on save on the top right. 
+
+
+### 2.6 Publish product to Bluemix
+
+Now we have a product, we are ready to publish. In this lab, API Connect on Bluemix is our deployment target. This section will show you how to add Bluemix as a target and how to publish your API and loopback application (microservice). 
+
+1.	Hit ‘Publish’ on the top right of the API Connect toolkit
+2.	Click ‘Add and Manage Targets’
+3.	Select ‘Add IBM Bluemix Target’.
+
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-1.png)
+      
+4.	You should already be signed into Bluemix.
+5.	Select the region and space where you previously created your own API Connect instance. Speak to your instructor if you have not yet done this. 
+6.	Select the catalog you would like to use (the recommendation is to use sandbox) and click 'next'.
  
-   <img src="/madridapiclab2/images/2-4-5.png" width="450">
+  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-2.png)
+        
+7.	On the screen to select the Bluemix application, type a new application name in at the bottom of the screen (e.g. madridApicLab) then press the + to add the application. Then click save. 
 
-7.Click save on the top right.
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-3.png)
+        
+8.	You are returned back to the main API Connect toolkit page. Select the ‘Publish’ button on the top right again. Select the Bluemix target you just set up.
 
-### 2.4 - Launch the API Connect Designer
+9.	Check the ‘Publish Application’ only and hit ‘Publish’.
 
-1.  Ensure you're in the `~/ThinkIBM/inventory` directory, then type the following command:
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-4.png)
 
-    ```shell
-    apic edit
-    ```
+10.	Once published, you will see a ‘Successfully published application’ message. 
 
-    The Firefox web browser will launch and automatically load the designer screen.
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-5.png)
 
-1.  Now that the API Designer is running, you should see the start page with your `inventory` API.
 
-    {% include note.html content="This API was created as a result of the generation of our LoopBack application.
-    " %}
+11.	Select the ‘Publish’ button on the top right again. Select the Bluemix target you set up.
 
-### 2.5 - Create a Model for the Inventory Items
+12.	Select ‘Stage or Publish products’, then ‘Select specific products’ and choose the ‘payments’ product. 
 
-In this section, you will define the `item` data model for our `inventory` API and attach it to the Cloudant data source. LoopBack is a data model driven framework. The properties of the data model will become the JSON elements of the API request and response payloads.
+ ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-6.png)
+ 
+ 
+13.	You will see a message saying ‘Successfully published products’ on the top left.
 
-1.  Click the `Models` tab.
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/api-designer-model-design-page.png)
-	
-1.  Click the `+ Add` button.
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/api-designer-model-design-page-add-button.png)
-	
-1.  In the New LoopBack Model dialog, enter `item` as the model name, then click the `New` button.
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/api-designer-model-design-page-new-model.png)
-
-1.  When the Model edit page for the item model displays, select the `item-db-cloudant` Data Source:
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/1.png)
-
-### 2.6 - Create Properties for the `item` Model
-
-The item table in the database has 6 columns that will need to mapped as well. To start creating properties for the item model: 
-
-1.  Click the `+` button in the **Properties** section.
-
-	![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/properties26.png)
-	
-1.  The `item` data model consists of six properties. Use the data below to add each of the properties:
-
-    |Required|Property Name|Is Array|Type  |ID |Index|Description           |
-    |--------|-------------|--------|------|---|-----|----------------------|
-    |yes     |name         |no      |string|no |no   |item name             |
-    |yes     |description  |no      |string|no |no   |item description      |
-    |yes     |img          |no      |string|no |no   |location of item image|
-    |yes     |img_alt      |no      |string|no |no   |item image title      |
-    |yes     |price        |no      |number|no |no   |item price            |
-    |no      |rating       |no      |number|no |no   |item rating           |
-
-1.  Scroll to the top of the page and click the `Save` button to save the data model.
-
-    ![](https://github.com/ibm-apiconnect/pot/raw/gh-pages/images/lab2/api-designer-model-design-page-model-properties-save.png)
-
-1.  Click the `All Models` link to return to the main API Designer page.
 
 ### 2.7 - Verify API
 
