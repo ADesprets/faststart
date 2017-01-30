@@ -6,11 +6,11 @@ permalink: /europe/2017/lab2.html
 summary: In this lab, you’ll gain a high level understanding of the architecture, features and development concepts related to the IBM API Connect (APIC) solution. Throughout the lab, you’ll get a chance to use the APIC command line interface for creating LoopBack applications, the intuitive web-based user interface, and explore the various aspects associated with the solution’s configuration of RESTful based services as well as their operation. At the end of this lab you will have created an new application which provides access to product inventory via a set of API resource operations.
 ---
 
-## Objective
+## **Objective**
 
 In this lab you will learn how to secure an API using oAuth 2.0. The API you are securing is named 'Payments' and it has already been created for you. The instructions will guide you through how to create an oAuth 2.0 provider and then how to secure the 'Payments' API using the oAuth 2.0 provider you create. 
 
-### What is oAuth 2.0?
+### **What is oAuth 2.0?**
 Before we go further, let's take a look at the definition of oAuth 2.0:
 
 "The OAuth 2.0 authorization framework enables a third-party
@@ -19,7 +19,7 @@ Before we go further, let's take a look at the definition of oAuth 2.0:
    between the resource owner and the HTTP service, or by allowing the
    third-party application to obtain access on its own behalf."
 
-## Components used in this Lab
+## **Components used in this Lab**
 
 The following diagram outlines the key interactions that we will be building in this lab.
 
@@ -52,7 +52,7 @@ The components in this lab are:
 
 ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/accesscodeflow.png)
 
-### Sequence of events
+### **Sequence of Events**
 
 The sequence of events to make a payment is:
 
@@ -64,7 +64,7 @@ The sequence of events to make a payment is:
 
 4. The third party calls the POST /payments/{id}/execute operation passing the payment ID and access token to execute the payment
 
-### Practical Notes
+### **Practical Notes**
 - In this lab you will be acting as the user, user client, financial institution and third party provider. 
 - All the steps described above (e.g. sequence of events) you will be performing manually so you can understand how the flow and interactions work. 
 - When running commands, particularly 'curl' commands, watch out for spaces and 'quotes'.
@@ -78,7 +78,7 @@ This section can be skipped if you already have the API Connect Toolkit installe
 
 ## Part 2: Secure and Test the Payments API
 
-### 2.1 Create a directory and clone the API Connect project from Github
+### **2.1 Create a directory and clone the API Connect project from Github**
 
 This section will guide you through the set up of the base API Connect project on your laptop. You will need to have all the prerequisites specified in part 1 in order to perform these steps. 
 
@@ -104,7 +104,7 @@ This section will guide you through the set up of the base API Connect project o
 
           npm install 
 
-### 2.2 Exploring the Payments API
+### **2.2 Exploring the Payments API**
 
 This section will help you explore the payments API that is provided for you and the 2 operations it includes. The API is based on loopback and has a model named 'payment'. An in memory data store is used to store the data associated with the model. It is worth mentioning that if you have an API based on loopback then it has a Node.Js application (microservice) associated with it, as well as the API. This is an important consideration when it comes to deploying your API later, as you have to deploy the application as well as the API product. 
 
@@ -116,34 +116,34 @@ This section will help you explore the payments API that is provided for you and
 2.	The toolkit will open up in your web browser and request you to sign into Bluemix, please do so using your IBM ID and password. 
 3.	You will observe an API already exists named ‘payments’. This uses an in memory database to store details of payments and exposes a number of operations to allow payments to be reserved and later executed. 
  
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-2-1.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-2-1.png)
 
 4.	Click on the payments api to go into its design. 
 
-![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-2-2.png) 
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-2-2.png) 
         
         
 5.	Scroll down until you can see the paths of the API. You will see 2 paths have been created for you:
  - a. POST / payments – this allows a payment reservation to be created and passes back a payment ID
  - b. POST payments/{id}/execute – this executes the payment and finalises it. It accepts a payment ID as a parameter in the URL (passed back from operation a). 
  
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-2-3.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-2-3.png)
 
 6.  Click on the 'All APIs' buton on the top left to return back to the main screen.
 
 
-### 2.3 Creating the oAuth 2.0 Provider
+### **2.3 Creating the oAuth 2.0 Provider**
 
 This section will guide you through the creation and configuration of the oAuth 2.0 provider. The oAuth 2.0 provider will use the 'Access Code' flow and will use a redirect to the Authentication and Authorization Server of the financial institution to confirm the users identify and allow them to confirm they want to allow the third party to make payments on their behalf.
 
 1.	Click on ‘Add’ and select ‘OAuth 2.0 Provider API’.
 
-![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-1.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-1.png)
         
 
 2.	Name the oAuth API ‘payment authorization’ and select ‘Create API’.
  
-![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-2.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-2.png)
 
         
 3.	Scroll down to the oAuth 2 section and set:
@@ -159,7 +159,7 @@ This section will guide you through the creation and configuration of the oAuth 
         -Leave all other settings as default
 
      
-![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-4.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-4.png)
 
 
 4.	Click save on the top right.
@@ -171,18 +171,18 @@ This section will guide you through the creation and configuration of the oAuth 
         - Required: yes (tick)
         - Type: String
  
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-5.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-5.png)
 
 7.	Click save on the top right.
 8.	Scroll to the ‘paths’ section of the API. 
 9.	Expand the GET /oauth2/authorize
 10.	Click ‘Add Parameter’ and select ‘payment_id’.
 
-![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-6.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-3-6.png)
            
 11.	Click save on the top right.
 
-### 2.4 Securing the Payments API with the oAuth Provider
+### **2.4 Securing the Payments API with the oAuth Provider**
 
 This part of the lab will walk you through the steps required to secure the payments API using oAuth 2.0 provider you created in the previous section. 
 
@@ -193,7 +193,7 @@ This part of the lab will walk you through the steps required to secure the paym
 1.	Press ‘All APIs’ at the top to return to the list of APIs
 2.	Click on the payments API to go in and see the details. 
  
-![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-1.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-1.png)
 
 3.	Scroll down to the ‘Security Definitions’ section and click the + icon to create a new security definition. Select oAuth, then set:
 
@@ -235,24 +235,23 @@ This part of the lab will walk you through the steps required to secure the paym
         ````
 
 
-![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-2.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-2.png)
         
         
 4.  Scroll down to the ‘Security’ section of the API and you will see that the client ID and the client Secret are the default security measures added to each operation of the API unless configured otherwise. We therefore have to specifically add the oAuth 2.0 provider we created to the execute payment operation. Ensure the ‘Security’ section of your API matches the screen shot below.  
 
-![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-3.png) 
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-3.png) 
 
 5.  Scroll down to the ‘Paths section and expand the path for ‘POST payments/{id}/execute’.
 
 6.  Ensure the security options for the API does not use the ‘API security definitions’ and instead is set to have the ‘payment approval’ oAuth  (note the client ID and client secret should also be unset). 
  
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-5.png)
-
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-4-5.png)
 
 7.  Click save on the top right.
 
 
-### 2.5 Adding the oAuth Provider to the Product
+### **2.5 Adding the oAuth Provider to the Product**
 
 In API Connect you package your APIs into products and this is how they are consumed. This section will guide you through packaging up the payments API and the payment authorization API into a single product. 
 
@@ -261,14 +260,14 @@ In API Connect you package your APIs into products and this is how they are cons
 3.	Click on the ‘Payments’ product to see the details.
 4.	Scroll down to the APIs section and press the (+) button. Check the ‘payment authorization’ API then press 'apply' to add it to the product.
 
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-5-1.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-5-1.png)
 
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-5-2.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-5-2.png)
 
 5.	Click on save on the top right. 
 
 
-### 2.6 Publish Product to Bluemix
+### **2.6 Publish Product to Bluemix**
 
 Now we have a product, we are ready to publish. In this lab, API Connect on Bluemix is our deployment target. This section will show you how to add Bluemix as a target and how to publish your API and loopback application (microservice). 
 
@@ -276,40 +275,38 @@ Now we have a product, we are ready to publish. In this lab, API Connect on Blue
 2.	Click ‘Add and Manage Targets’
 3.	Select ‘Add IBM Bluemix Target’.
 
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-1.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-1.png)
       
 4.	You should already be signed into Bluemix.
 5.	Select the region and space where you previously created your own API Connect instance. Speak to your instructor if you have not yet done this. 
 6.	Select the catalog you would like to use (the recommendation is to use sandbox) and click 'next'.
  
-  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-2.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-2.png)
         
 7.	On the screen to select the Bluemix application, type a new application name in at the bottom of the screen (e.g. madridApicLab) then press the + to add the application. Then click save. 
 
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-3.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-3.png)
         
 8.	You are returned back to the main API Connect toolkit page. Select the ‘Publish’ button on the top right again. Select the Bluemix target you just set up.
 
 9.	Check the ‘Publish Application’ only and hit ‘Publish’.
 
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-4.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-4.png)
 
 10.	Once published, you will see a ‘Successfully published application’ message. 
 
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-5.png)
-
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-5.png)
 
 11.	Select the ‘Publish’ button on the top right again. Select the Bluemix target you set up.
 
 12.	Select ‘Stage or Publish products’, then ‘Select specific products’ and choose the ‘payments’ product. 
 
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-6.png)
-
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-6-6.png)
 
 13.	You will see a message saying ‘Successfully published products’ on the top left.
 
 
-### 2.7 Registering an App on the Developer Portal
+### **2.7 Registering an App on the Developer Portal**
 
 This is the first part of the lab where we are changing our role (or perspective). Up until now we have been assuming the role of a developer in the financial institution who has published an API to allow third party providers to make payments on behalf of its customers (users). 
 
@@ -328,23 +325,23 @@ As a third party developer you will visit the developer portal of the financial 
 6.	Click ‘Submit’ 
 7.	Click to show the client secret and client id and note these down somewhere (they will be needed later).
 
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-7-1.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-7-1.png)
 
 
-### 2.8 Subscribing your oAuth Application to the API
+### **2.8 Subscribing your oAuth Application to the API**
 
 As a third party developer, in the previous step you registered an application in the developer portal of the financial institution.  You will now subscribe the application you created to the payments API product. This means you can now start to call the payments and payment authorization APIs. 
 
 1.	Press the ‘API Products’ button in the menu bar and click on payments 
  
-  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-8-1.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-8-1.png)
 
 2.	Click on ‘Subscribe’ and select the radio button to confirm you want to subscribe your ‘madridApicOAuthApp’ app to the Payments API product. 
 
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-8-2.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-8-2.png)
 
 
-### 2.9 Calling the Payments API to initiate the Payment
+### **2.9 Calling the Payments API to initiate the Payment**
 
 Everything is now set up from a financial institution perspective (the APIs are published) and from a third party provider perspective (an application is registered and subscribed to the APIs). It is therefore time to start testing the end-to-end flow of making a payment. 
 
@@ -365,15 +362,15 @@ The first step is to initiate the payment by calling the POST /payments API.
                 }
 
 
- ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-9-1.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-9-1.png)
 
 
 6.	Click the ‘Call Operation’ button and you should observe the response. The response will have the request payload in it plus an ID. Take note of this ID (payment_id) as it will be required later. 
  
-  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-9-2.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-9-2.png)
 
 
-### 2.10 Retrieving the Authorization Code 
+### **2.10 Retrieving the Authorization Code**
 
 In this step you will be retrieving the authorization code. The authorization code is the intermediately token given to the users client after they have authenticated with the authentication and authorization server (AAS) of the financial institution and approved the payment. It is an indication that the customer is happy to grant the third party provider access to make the payment on their behalf.
 
@@ -386,7 +383,7 @@ Here you are assuming the role of the customer who is signing into the AAS of th
 
 
 
-  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-1.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-1.png)
         
         
 3.	You will call the URL you took note of via a web browser, however we must append some parameters to it in order to properly authenticate and get the authorization code. You must add
@@ -397,39 +394,39 @@ Here you are assuming the role of the customer who is signing into the AAS of th
         - client_id= see step 2.7.7
         - redirect_uri=https://example.com/redirect
 
-Here is an example:
+    Here is an example:
         
         https://api.eu.apiconnect.ibmcloud.com/garykeanukibmcom-apiconnect/workshop-demo/payment-authorization/oauth2/authorize?response_type=code&scope=payment_approval&payment_id=999&client_id=dcebcce4-91ae-4af4-9c14-c812e1677937&redirect_uri=https://example.com/redirect
         
         
-4.Now call you constructed in the previous step from your web browser (just like you were visiting http://ibm.com). You will be redirected to the external authorization and authentications login page 
+4.  Now call you constructed in the previous step from your web browser (just like you were visiting http://ibm.com). You will be redirected to the external authorization and authentications login page 
 
-5.Enter 
+5.  Enter 
 
-- username=johndoe 
-- password=password 
+    - username=johndoe 
+    - password=password 
 
-then click login
+    then click login
  
-  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-2.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-2.png)
 
 
-6.Click ‘approve payment’
+6.  Click ‘approve payment’
  
-   ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-3.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-3.png)
 
 
-7.You will be redirected to ‘example.com/redirect’. Appended to the URL there will be the authorization code you require to obtain the access token in the next step. Copy this code and keep note of it. 
+7.  You will be redirected to ‘example.com/redirect’. Appended to the URL there will be the authorization code you require to obtain the access token in the next step. Copy this code and keep note of it. 
 
 The authorization code from the URL below is: AAKm5rxLqxTqUNAnqRQIfg4raNxLxGiI4SWNvIfczRNGFjxm9658XEzcNg25ErFYROEp5OL9Z46EKVi_HLuzHmDiQnT9BoNQ6cAWue9atl2gHQ
 
      https://example.com/redirect?code=AAKm5rxLqxTqUNAnqRQIfg4raNxLxGiI4SWNvIfczRNGFjxm9658XEzcNg25ErFYROEp5OL9Z46EKVi_HLuzHmDiQnT9BoNQ6cAWue9atl2gHQ
 
 
-   ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-4.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-4.png)
 
 	
-### 2.11 Retrieving the Access Token 
+### **2.11 Retrieving the Access Token** 
 
 In this section you will be retrieving the access token using the authorization code obtained in the previous section. 
 
@@ -467,8 +464,6 @@ For example:
 Ensure the spaces between the different parts of the command are correct. If your curl command doesn't work, also try removing the quotes surrounding the URL for the token.
 
 
-
-
 6.  Run the command you constructed in the previous step on the command line/terminal. The response should look like below. Take a note of the access token in the response. 
 
 
@@ -478,7 +473,7 @@ Ensure the spaces between the different parts of the command are correct. If you
 7.  The authorization code in generated in the previous section only has a few minutes before it becomes invalid. It may therefore be necessary to repeat section 2.10 and generate a new authorization code.
 
 
-### 2.12 Executing the Payment using the Access Token 
+### **2.12 Executing the Payment using the Access Token**
 
 Now the third party provider has the access token and the payment ID from earlier. It can now finalise the payment by calling the POST /payments/{id}/execute operation inside the payment API of the financial institution. 
 
@@ -488,18 +483,18 @@ You are assuming the role of the third party provider in this section.
 1.	Return back to the developer portal in your web browser and go back to the payments API product.
 2.	Expand the payments API and select the POST /payments/{id}/execute operation.
 
-  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-12-1.png)  
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-12-1.png)  
         
 3.	Scroll down until you can see the ‘Identification’ section. Select you app name from the ‘Client ID’ drop down and enter your client secret (See step 2.7.7).
  
-   ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-12-2.png) 
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-12-2.png) 
 
  
 4.	Scroll down until you can see the ‘Authorization’ section in the tester on the right hand side. Enter your access token (see step 2.11.6). 
 
 5.	Scroll further down and enter the payment id you are executing in the id field (see step 2.9.6)
 
-  ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-12-3.png)
+    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-12-3.png)
 
         
 6.	Click ‘Call Operation’ to execute the call. The response should be the payment_id you specified now with an ‘executed’ state. 
