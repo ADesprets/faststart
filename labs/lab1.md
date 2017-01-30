@@ -64,7 +64,7 @@ Now that we have explained the contents of a custom theme file, it is time to lo
 
     ![](https://ibm-apiconnect.github.io/faststart/images/lab7/enable-theme.png)
    
-1.  Scroll down the list of themes to find the `thinkibm_connect 7.50` theme.
+1.  Scroll down the list of themes to find the `thinkibm_connect 7.53` theme.
 
     Click the `Enable and set default link` link.
 
@@ -73,6 +73,11 @@ Now that we have explained the contents of a custom theme file, it is time to lo
 1.  Click the `Home` icon in the top-left corner of the screen to return to the home page.
 
     ![](https://ibm-apiconnect.github.io/faststart/images/lab7/CloseThemeSettings.png)
+
+1.  After returning to the Home Page of your Developer Portal, it should look like the image below. 
+
+     ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab1/theme-uploaded-final.png ) 
+      
 
 #### **1.1.2 - Customize the Welcome Banner**
 
