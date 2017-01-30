@@ -1,5 +1,5 @@
 ---
-title: Lab 2 - Create a Loopback Application
+title: Lab 2 - Securing the Payments API using oAuth 2.0
 toc: true
 sidebar: labs_sidebar
 permalink: /europe/2017/lab2.html
@@ -8,18 +8,50 @@ summary: In this lab, you’ll gain a high level understanding of the architectu
 
 ## Objective
 
-In the following lab, you will learn:
+In this lab you will learn how to secure an API using oAuth 2.0. The API you are securing is named 'Payments' and it has already been created for you. The instructions will guide you through how to create an oAuth 2.0 provider and then how to secure the 'Payments' API using the oAuth 2.0 provider you create. 
 
-+ How to create a multi-model Loopback application
-+ How to create a Representational State Transfer (REST) API definition using IBM Connect API Designer
-+ How to create a Representational State Transfer (REST) API definition using IBM Connect Command Line
-+ How to use the Loopback Cloudant Connector
-+ How to test a REST API
-+ How to create relationships between models
+### What is oAuth 2.0?
+Before we go further, let's take a look at the definition of oAuth 2.0:
 
-## Case Study Used in this Tutorial
+"The OAuth 2.0 authorization framework enables a third-party
+   application to obtain limited access to an HTTP service, either on
+   behalf of a resource owner by orchestrating an approval interaction
+   between the resource owner and the HTTP service, or by allowing the
+   third-party application to obtain access on its own behalf."
 
-**ThinkIBM** is a company which sells historical and rare IBM machinery. **ThinkIBM** wants to create easier acess to their inventory database through a collection of APIs. Additionally, the application should also support the ability for buyers to leave reviews. As an application developer, you will create the application that provides access to product inventory.
+## Components used in this Lab
+
+The following diagram outlines the key interactions that we will be building in this lab.
+
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/arc_diag.png)
+
+The components in this lab are:
+
+- **The Payments API**: 
+  - The Payments API is hosted and exposed by a financial institution who wants to allow third parties to make payments on behalf of its customers. 
+  - The payments API is deployed on API Connect has 2 operations
+      - The first operation is 'POST /payments' which allows a third party provider to initiate a payment on behalf of a user. Note this puts the payment in a 'pending' state and returns back a payment ID to the third party provider. This operation is secured by API keys only (no oAuth). 
+      - The second  operation is 'POST /payments/{id}/execute' which allows the third party to finalise a payment and set it to an 'executed' state using the payment ID issued in the previous API call. This operation is secured by oAuth, therefore the user has to be redirected by the third party to the financial institution so they can sign in and confirm they authorize the third party to make the payment on their behalf. The oAUth flow handles the interaction between the user, third party provider and financial institution and it uses authorization codes and access tokens to delegate authorization from the user to the third party provider.  
+   - The Payments API is provided for you in this lab. 
+   
+- **Authentication and Authorization Server**
+   - This is the Authentication and Authorization Server (AAS) of the financial institution hosting the payments API. 
+   - The user is redirected to the AAS of the financial institution to sign-in confirm they are happy to give the third party provider permission to make the payment. 
+   - The user signs-in via the web interface of the AA and asked if they approve the payment they are shown on screen.
+   - If the user confirms the AAS redirects them back to the third party via API Connect.
+   - The AAS has been provided for you in this lab. 
+
+- **The Payment Authorization (oAuth 2.0) API**: 
+   - The Payment Authorization API (oAuth flow) handles the interaction between the user, third party provider and financial institution and it uses authorization codes and access tokens to delegate authorization from the user to the third party provider.  
+   - 'Access Code' is the oAuth 2.0 flow used in the Payment Authorization API. The diagram below gives a detailed step by step guide of the access code oAuth flow. However, in summary, it invovles the user (client) being redirected to the AAS  and obtaining an authorization code. The authorization code is handed to the third party provider who in turns exchanges it for an access token which can then be used to make the payment. 
+   - The oAuth flow has been enhanced slightly in this lab to include the passing of a payment ID in the oAuth flow. This is an important addition because in this scenario the user doesn't want to delegate authorization of a full 'scope' to the third party. The scope being used is 'payment approval' which means the user would be authorizing the third party to make ANY payment on their behalf. With the addition of the payment ID it means the user is authorizing the third party to make only the single payment being processed and not ANY payment. In this lab the payment ID is included in the URL as a parameter being passed between the different components. A more elegant and secure solution would be to enrich the access token to include the payment ID. API Connect has this capability and more information can be found on the Knowledge Center.
+   
+        [oAuth Metadata](https://www.ibm.com/support/knowledgecenter/en/SSMNED_5.0.0/com.ibm.apic.toolkit.doc/con_metadata.html) 
+   
+   - In this lab you will build the oAuth 2.0 provider API. 
+
+![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/accesscodeflow.png)
+
 
 ## Step by Step Lab Instructions
 
