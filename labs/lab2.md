@@ -433,7 +433,7 @@ The authorization code from the URL below is: AAKm5rxLqxTqUNAnqRQIfg4raNxLxGiI4S
      https://example.com/redirect?code=AAKm5rxLqxTqUNAnqRQIfg4raNxLxGiI4SWNvIfczRNGFjxm9658XEzcNg25ErFYROEp5OL9Z46EKVi_HLuzHmDiQnT9BoNQ6cAWue9atl2gHQ
 
 
-    ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-4.png)
+   ![](https://ibm-apiconnect.github.io/faststart/images/europe2017/lab2/2-10-4.png)
 
 	
 ### **2.11 Retrieving the Access Token** 
