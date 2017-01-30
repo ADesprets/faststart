@@ -3,7 +3,7 @@ title: Lab 2 - Securing the Payments API using oAuth 2.0
 toc: true
 sidebar: labs_sidebar
 permalink: /europe/2017/lab2.html
-summary: In this lab, you’ll gain a high level understanding of the architecture, features and development concepts related to the IBM API Connect (APIC) solution. Throughout the lab, you’ll get a chance to use the APIC command line interface for creating LoopBack applications, the intuitive web-based user interface, and explore the various aspects associated with the solution’s configuration of RESTful based services as well as their operation. At the end of this lab you will have created an new application which provides access to product inventory via a set of API resource operations.
+summary: In this lab, you’ll gain a detailed understanding of how oAuth 2.0 works in API Connect. You’ll learn how to use an external authentication and authorization server and how to test the API in API Connect secured with oAuth. 
 ---
 
 ## **Objective**
